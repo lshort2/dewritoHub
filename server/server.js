@@ -27,3 +27,15 @@ Meteor.methods({
     }
   }
 })
+
+Meteor.methods({
+  'postExists' : (params) =>{
+    if(posts.findOne({_id: params})){
+      posts.update({_id: params}, {$inc: {views: 1}})
+      return [posts.findOne({_id:params})._id, posts.findOne({_id:params}).title];
+    }
+    else if(announcements.findOne({_id: params})){
+      return announcements.findOne({_id: params})._id;
+    }
+  }
+})
