@@ -1,0 +1,116 @@
+@import "../../default";
+
+.content{
+  margin: 0 auto;
+  padding-top: 80px;
+  width: $appWidth;
+  height: calc(100% - 80px);
+
+  .view{
+    width: calc(100% - 250px);
+    float: left;
+    margin-bottom: 50px;
+    .viewCon{
+      background: $foreColor;
+      @include border-radius(3px);
+      overflow: hidden;
+    }
+    .hero{
+      width: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .description{
+      padding: 20px;
+      color: #d8d8d8;
+      font-size: 14.4px;
+      font-family: $font-ops;
+      text-align: justify;
+    }
+    input{
+      @include border-radius(2px);
+      width: calc(100% - 14px);
+      border: none;
+      box-shadow: 2px 2px 8px -1px rgba(17, 17, 17, 0.129412);
+      padding: 7px 7px 7px 7px;
+      height: 24px;
+      position: relative;
+      float: left;
+      margin-top: 20px;
+    }
+    .commentCon{
+      width: 100%;
+      margin-top: 20px;
+      display: inline-block;
+    }
+    .comment{
+      background: $foreColor;
+      width: calc(100% - 40px);
+      padding: 20px;
+      @include border-radius(3px);
+      overflow: hidden;
+      .commentTop, .right{
+        color: #898989;
+        font-size: 14.4px;
+      }
+    }
+    .commentMeat{
+      margin-bottom: 5px;
+      color: white;
+    }
+  }
+  .sidebar{
+    width: 250px;
+    float: left;
+    display: inline-block;
+    .button{
+      margin-left: 10%;
+      border: none;
+      background: #2196f3;
+      width: 90%;
+      height: 50px;
+      color: white;
+      font-weight: 700;
+      @include border-radius(4px);
+      font-size: 14.4px;
+      margin-bottom: 10px;
+    }
+  }
+  .catagory{
+    background: $foreColor;
+    width: 90%;
+    margin-left: 10%;
+    margin-bottom: 40px;
+    display: inline-block;
+    @include border-radius(3px);
+    .header{
+      padding:0;
+      margin: 0;
+      color: white;
+    }
+    .con{
+      padding: 10px;
+    }
+    .conBorder{
+      border-bottom: 1px solid #494949;
+    }
+    .type{
+      color: white;
+      font-size: 13.4px;
+    }
+    .score{
+      color: #009688;
+    }
+    .mode{
+      color: gray;
+      font-size: 12px;
+    }
+  }
+  .info{
+    color: gray;
+  }
+  .right{
+    float: right;
+    color: white;
+  }
+}

@@ -8,6 +8,19 @@
           DewritoHub
         </div>
         <input class="search" placeholder="search...">
+
+        {{#if currentUser}}
+        <div class="fa fa-bell">
+
+        </div>
+        <div class="fa fa-cog">
+
+        </div>
+        {{else}}
+        <div class="createAcc">
+          Login
+        </div>
+        {{/if}}
       </div>
     </span>
     <div class="mobileNav">

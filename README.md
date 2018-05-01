@@ -19,6 +19,6 @@ Another great way is to fork us and put in a PR to help make us even better!
 
 But money doesn't hurt either! You can find ways to contribute to us at:
 
-* Patreon link here
-* Ko-fi link here
-* PayPal link here
+* [Patreon](https://Patreon.com/finchMFG)
+* [Ko-fi](https://ko-fi.com/finchMFG)
+* [PayPal](https://paypal.me/finchMFG)
