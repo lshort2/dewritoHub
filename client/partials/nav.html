@@ -1,0 +1,79 @@
+<template name="nav">
+  <nav id="nav">
+    <span class="deskNav">
+      <div class="con">
+        <div class="brand">
+          <img src="/logo.jpg" alt="finchHub" title="finchHub"/>
+          <!-- you can put brand text here, and it'll render nice -->
+        </div>
+        <input class="search" placeholder="search...">
+      </div>
+    </span>
+    <div class="mobileNav">
+      <span class="fa fa-bars"></span>
+      <span class="label">
+        {{#if home}}
+        {{#unless user}}
+        All
+        {{/unless}}
+        {{/if}}
+        {{#if post}}
+        Post
+        {{/if}}
+        {{#if notFound}}
+        404
+        {{/if}}
+        {{#if user}}
+        User
+        {{/if}}
+      </span>
+      <input class='mobSearch' placeholder="Search..."/>
+
+      <div class="actions">
+        <span class="fa fa-search"></span>
+      </div>
+    </div>
+  </nav>
+  <script>
+  // Hide Header on on scroll down
+  var didScroll;
+  var lastScrollTop = 0;
+  var delta = 50;
+  var navbarHeight = $('#nav').outerHeight();
+
+  if($(window).width() <= 750){
+    $('.app').scroll(function(event){
+      didScroll = true;
+    });
+
+    setInterval(function() {
+      if (didScroll) {
+        hasScrolled();
+        didScroll = false;
+      }
+    }, 250);
+
+    function hasScrolled() {
+      var st = $('.app').scrollTop();
+
+      // Make sure they scroll more than delta
+      if(Math.abs(lastScrollTop - st) <= delta)
+      return;
+
+      // If they scrolled down and are past the navbar, add class .nav-up.
+      // This is necessary so you never see what is "behind" the navbar.
+      if (st > lastScrollTop && st > navbarHeight){
+        // Scroll Down
+        $('#nav').removeClass('nav-down').addClass('nav-up');
+      } else {
+        // Scroll Up
+        if(st + $('.app').height() < $('.mainView').height()) {
+          $('#nav').removeClass('nav-up').addClass('nav-down');
+        }
+      }
+
+      lastScrollTop = st;
+    }
+  }
+  </script>
+</template>
