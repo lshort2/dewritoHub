@@ -20,3 +20,16 @@ Meteor.modals ={
     })
   }
 }
+
+//notification decay
+Meteor.notiDecay = {
+  notiDecay : (target) =>{
+    var thisOne = $('#'+target)
+    setTimeout(function () {
+      thisOne.fadeOut();
+      setTimeout(function () {
+        thisOne.remove();
+      }, 400);
+    }, 3800);
+  }
+}
