@@ -7,3 +7,27 @@ body{
   background-size: cover;
   background-attachment: fixed;
 }
+
+.button, .button-light{
+  width: 100px;
+  height: 35px;
+  text-align: center;
+  line-height: 32px;
+  cursor: pointer;
+  margin-top: 10px;
+  @include border-radius(4px);
+}
+.button-light{
+  display: inline-block;
+  float: left;
+  border: 1px solid #408ced;
+  color: #1c1f27;
+  background: transparent;
+}
+.button{
+  display: inline-block;
+  float: right;
+  color: white;
+  background: #408ced;
+  border: none;
+}
