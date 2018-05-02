@@ -106,3 +106,70 @@ Template.main.events({
     appTracker.set('post')
   }
 });
+
+Template.create.events({
+  "click .mapPost": function(event, template){
+    var title = $('.mapTitle').val()
+    var description = $('.mapDescription').val()
+    var excerpt = $('.mapExcerpt').val()
+    var tags = $('.mapTags').val()
+    var url = $('.mapUrl').val()
+    // TODO: ouch. Loop this shit.
+    var maxImages = 4;
+    var img = []
+    var imgDat = []
+    for(var i = 0; i < maxImages; i++){
+      if(i == 0){
+        img[i] = $('#files')[0].files[0]
+      }else{
+        img[i] = $('#files'+[i])[0].files[0]
+      }
+    }
+
+    var newImages = [];
+    for (var i = 0; i < img.length; i++) {
+      if (img[i]) {
+        newImages.push(img[i]);
+      }
+    }
+
+    for(var i = 0; i < newImages.length; i++){
+      if(newImages[i]){
+        readFile(newImages[i], function(e) {
+          // use result in callback...
+          imgDat[i] = e.target.result;
+        });
+      }
+    }
+
+    var newDat = [];
+    for (var i = 0; i < newImages.length; i++) {
+      if (newImages[i]) {
+        newDat.push(newImages[i]);
+      }
+    }
+
+    function readFile(file, onLoadCallback){
+      var reader = new FileReader();
+      reader.onload = onLoadCallback;
+      reader.readAsDataURL(file);
+    }
+
+    function checkVariable() {
+      var canPost = [];
+      for(var i = 0; i < newImages.length; i++){
+        if(newImages[i] && newDat[i]){
+          canPost[i] = 'true'
+        }
+      }
+      if(title && description && excerpt){
+        canPost.push('true')
+      }
+
+      if(canPost.length == newImages.length +1){
+        console.log('can post!!!')
+      }
+    }
+    setTimeout(checkVariable, 500);
+  }
+});

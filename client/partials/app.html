@@ -20,7 +20,9 @@
       {{>main}}
       {{/if}}
       {{#if create}}
+      {{#if currentUser}}
       {{>create}}
+      {{/if}}
       {{/if}}
     </div>
   </div>
