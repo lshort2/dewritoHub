@@ -97,7 +97,7 @@
     display: inline-block;
     width: 100%;
   }
-  .mapTitle, .mapDescription, .mapTags, .mapUrl, .mapExcerpt{
+  .mapTitle, .mapDescription, .mapTags, .mapUrl, .mapExcerpt, select, .minPlayer, .maxPlayer{
     @include border-radius(2px);
     width: calc(100% - 14px);
     max-width: 360px;
@@ -109,11 +109,14 @@
     float: left;
     margin-top: 5px;
   }
+  select{
+    height: auto;
+  }
   .mapDescription, .mapExcerpt{
     max-width: calc(100% - 14px);
     min-width: calc(100% - 14px);
     height: 150px;
-  },
+  }
   .mapExcerpt{
     height: 60px;
   }

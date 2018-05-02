@@ -37,11 +37,39 @@
         <input id="mapFile" type="file" accept=".zip, .7zip, .rar, .tar, .tar.gz">
       </div>
 
-      <button class="button-light">Cancel</button>
-      <button class="button mapPost">Post</button>
-
+      <div class="section">
+        <h4>Catagory</h4>
+        <select class="mapCatagory">
+          <option>Slayer</option>
+          <option>Oddball</option>
+          <option>King of the Hill</option>
+          <option>Capture the Flag</option>
+          <option>Assault</option>
+          <option>Territories</option>
+          <option>Juggernaut</option>
+          <option>Infection</option>
+          <option>VIP</option>
+          <option>Mini game</option>
+          <option>Aesthetic</option>
+          <option>Custom</option>
+      </select>
     </div>
-  </section>
+
+    <div class="section">
+      <h4>Min Players</h4>
+      <input placeholder="Minimum Players" class="minPlayer" />
+    </div>
+
+    <div class="section">
+      <h4>Max Players</h4>
+      <input placeholder="Maximum Players" class="maxPlayer" />
+    </div>
+
+    <button class="button-light">Cancel</button>
+    <button class="button mapPost">Post</button>
+
+  </div>
+</section>
 </template>
 
 <!-- seperated so it's easier to read -->
@@ -58,7 +86,7 @@
         Add from Computer
       </div>
 
-      <input id="files" type="file" accept=".png, .jpg, .jpeg">
+      <input id="files0" type="file" accept=".png, .jpg, .jpeg">
     </div>
 
     <div class="pictureCon">
@@ -130,8 +158,8 @@
         notiSet('fail', 'Only Images, please!')
       }
     }
-    $('#files').on('change', function(){
-      changes('#files', '#preview')
+    $('#files0').on('change', function(){
+      changes('#files0', '#preview')
     })
     $('#files1').on('change', function(){
       changes('#files1', '#preview1')

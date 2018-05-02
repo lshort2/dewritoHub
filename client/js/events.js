@@ -114,16 +114,16 @@ Template.create.events({
     var excerpt = $('.mapExcerpt').val()
     var tags = $('.mapTags').val()
     var url = $('.mapUrl').val()
+    var catagory = $('.mapCatagory').val()
+    var minPlayer = $('.minPlayer').val()
+    var maxPlayer = $('.maxPlayer').val()
+
     // TODO: ouch. Loop this shit.
-    var maxImages = 4;
+    var maxImages = 5;
     var img = []
     var imgDat = []
     for(var i = 0; i < maxImages; i++){
-      if(i == 0){
-        img[i] = $('#files')[0].files[0]
-      }else{
-        img[i] = $('#files'+[i])[0].files[0]
-      }
+        img.push($('#files'+[i])[0].files[0])
     }
 
     var newImages = [];
@@ -137,15 +137,8 @@ Template.create.events({
       if(newImages[i]){
         readFile(newImages[i], function(e) {
           // use result in callback...
-          imgDat[i] = e.target.result;
+          imgDat.push(e.target.result);
         });
-      }
-    }
-
-    var newDat = [];
-    for (var i = 0; i < newImages.length; i++) {
-      if (newImages[i]) {
-        newDat.push(newImages[i]);
       }
     }
 
@@ -156,18 +149,37 @@ Template.create.events({
     }
 
     function checkVariable() {
+      var newDat = [];
+      for (var i = 0; i < imgDat.length; i++) {
+        if (imgDat[i]) {
+          newDat.push(imgDat[i]);
+        }
+      }
+      console.log(newDat)
       var canPost = [];
       for(var i = 0; i < newImages.length; i++){
         if(newImages[i] && newDat[i]){
           canPost[i] = 'true'
         }
       }
-      if(title && description && excerpt){
+      if(title && description && excerpt && minPlayer && maxPlayer){
         canPost.push('true')
+      }else{
+        var vals = [title, description, excerpt, minPlayer, maxPlayer]
+        var titles = ['title', 'description', 'short description', 'min players', 'max players']
+        for(var c = 0; c < vals.length; c++){
+          // look at me, I know c++ !
+          if(!vals[c]){
+            notiSet('fail', 'Missing '+titles[c])
+          }
+        }
       }
 
       if(canPost.length == newImages.length +1){
         console.log('can post!!!')
+        Meteor.call('createPost', title, description, excerpt, tags, url, catagory, minPlayer, maxPlayer, newDat, function(err, res){
+          if(!err)notiSet('success', 'Posted successfully')
+        })
       }
     }
     setTimeout(checkVariable, 500);
