@@ -1,3 +1,14 @@
+//first time init
+var catagoriesList = ['Slayer','Oddball','King of the Hill','Capture the Flag','Assault', 'Territories', 'Juggernaut', 'Infection', 'Custom', 'Mini game', 'Aesthetic', 'Puzzle']
+
+for(var i = 0; i < catagoriesList.length; i++){
+  if(catagory.findOne({name: catagoriesList[i]})){
+
+  }else{
+    catagory.insert({name: catagoriesList[i], count: 0})
+  }
+}
+
 // the signup method
 Meteor.methods({
   'signup': (username, password) =>{

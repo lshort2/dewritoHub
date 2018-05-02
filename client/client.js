@@ -7,6 +7,8 @@ Deps.autorun(function(){
   Meteor.subscribe('comments', currentPost.get())
 });
 
+Meteor.subscribe('catagory')
+
 Deps.autorun( function(){
   Meteor.subscribe('userStuff', currentUser.get())
 });

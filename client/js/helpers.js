@@ -2,6 +2,9 @@
 Template.main.helpers({
   posts: function(){
     return posts.find({})
+  },
+  'catagory': ()=>{
+    return catagory.find({})
   }
 });
 

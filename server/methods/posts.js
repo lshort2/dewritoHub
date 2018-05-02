@@ -4,7 +4,7 @@ Fiber = Npm.require('fibers');
 var fs = Npm.require('fs');
 
 Meteor.methods({
-  createPost:function(title, description, excerpt, tags, url, catagory, minPlayer, maxPlayer, newDat){
+  createPost:function(title, description, excerpt, tags, url, catagory2, minPlayer, maxPlayer, newDat){
     var excerpt = excerpt.substring(0, 300);
     var title = title.substring(0, 300);
     var username = Meteor.user().username
@@ -83,8 +83,8 @@ Meteor.methods({
     var thumbnail = '/files/thumbs/'+daId+'_0.jpg'
     var link = '/files/link/'+daId+'_0.jpg'
 
-    posts.insert({_id: daId, username: username, title: title, description:description, link:link, thumbnail: thumbnail, date: new Date(), tagList:testTags, comments: 0, score: 1, excerpt: excerpt, editDate: 'Never', views: 0, newDate: newDate, imgCount: newDat.length, downloads: 0, catagory:catagory, minPlayer:minPlayer, maxPlayer:maxPlayer})
-
+    posts.insert({_id: daId, username: username, title: title, description:description, link:link, thumbnail: thumbnail, date: new Date(), tagList:testTags, comments: 0, score: 1, excerpt: excerpt, editDate: 'Never', views: 0, newDate: newDate, imgCount: newDat.length, downloads: 0, catagory:catagory2, minPlayer:minPlayer, maxPlayer:maxPlayer})
     userStuff.update({username: Meteor.user().username}, {$push: {createdPosts: daId}})
+    catagory.update({name:catagory2}, {$inc:{count: 1}})
   }
 });

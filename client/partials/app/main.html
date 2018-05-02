@@ -13,36 +13,11 @@
             <h5 class="header">GAME MODE</h5>
           </div>
           <div class="con">
+            {{#each catagory}}
             <div class="type">
-              <h5>Slayer</h5><h5 class="right">20</h5>
+              <h5>{{name}}</h5><h5 class="right">{{count}}</h5>
             </div>
-            <div class="type">
-              <h5>Oddball</h5><h5 class="right">20</h5>
-            </div>
-            <div class="type">
-              <h5>King of the Hill</h5><h5 class="right">20</h5>
-            </div>
-            <div class="type">
-              <h5>Capture the Flag</h5><h5 class="right">20</h5>
-            </div>
-            <div class="type">
-              <h5>Assault</h5><h5 class="right">20</h5>
-            </div>
-            <div class="type">
-              <h5>Territories</h5><h5 class="right">20</h5>
-            </div>
-            <div class="type">
-              <h5>Juggernaut</h5><h5 class="right">20</h5>
-            </div>
-            <div class="type">
-              <h5>Infection</h5><h5 class="right">20</h5>
-            </div>
-            <div class="type">
-              <h5>VIP</h5><h5 class="right">20</h5>
-            </div>
-            <div class="type">
-              <h5>Custom</h5><h5 class="right">20</h5>
-            </div>
+            {{/each}}
           </div>
         </div>
 
