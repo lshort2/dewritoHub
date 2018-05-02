@@ -22,7 +22,7 @@ function reset(){
   appTracker.set('')
   currentPost.set('')
   currentUser.set('')
-  postLimit.set(20)
+  postLimit.set(10)
   postSearch.set('')
   pageNum.set('')
   lastPage.set(0)
@@ -133,6 +133,20 @@ Template.main.events({
     reset()
     currentPost.set(event.currentTarget.id)
     appTracker.set('post')
+  },
+  'click .fa-chevron-left':()=>{
+    if(pageNum.get() < 1){
+      // do nothing
+    }else{
+      pageNum.set(pageNum.get() - 1)
+    }
+  },
+  'click .fa-chevron-right':()=>{
+    if(pageNum.get() < 1){
+      pageNum.set(2)
+    }else{
+      pageNum.set(pageNum.get() + 1)
+    }
   }
 });
 

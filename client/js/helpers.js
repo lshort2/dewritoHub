@@ -46,6 +46,11 @@ Template.registerHelper("settings", function(argument){
   if(appTracker.get() == 'settings') return true;
 });
 
+Template.registerHelper("curPage", function(argument){
+  if(pageNum.get() == '') {return '1'}
+  else{return pageNum.get()}
+});
+
 
 // markdown
 Template.registerHelper('markdown', function (text, options) {

@@ -45,11 +45,19 @@
       -->
 
       </aside>
-
+      <div class="sort">
+        <span class="option active">
+          New
+        </span>
+        <span class="option">
+          Trending
+        </span>
+        <span class="option">
+          Featured
+        </span>
+      </div>
       <div class="list">
-        <div class="sort">
 
-        </div>
         <section class="feed">
           {{#each posts}}
           <div class="con postCard" id="{{_id}}">
@@ -85,39 +93,10 @@
             </div>
           </div>
           {{/each}}
-
-
-          <div class="con">
-            <img src="https://www.forgehub.com/data/resource_icons/6/6555.jpg?1525205182" />
-            <div class="about">
-              <h3>Title</h3>
-              <div class="author">
-                by FinchMFG, <span title="Tuesday May 1, 5:18PM">7 hours ago</span>
-              </div>
-              <div class="desc">
-                A super interesing description of the map will go here. This is like, 250 chars before being trunca...
-              </div>
-              <div class="bottom">
-                <span class="stat">
-                  <span class="fa fa-cloud-download"></span>
-                  <span class="number">20</span>
-                </span>
-
-                <span class="stat">
-                  <span class="fa fa-comments"></span>
-                  <span class="number">20</span>
-                </span>
-
-
-                <span class="stat">
-                  <span class="fa fa-eye"></span>
-                  <span class="number">20</span>
-                </span>
-                <span class="right">
-                  SLAYER - RATING
-                </span>
-              </div>
-            </div>
+          <div class="page">
+            <span class="fa fa-chevron-left" title="Back"></span>
+            <span class="curPage">{{curPage}}</span>
+            <span class="fa fa-chevron-right" title="Next"></span>
           </div>
         </section>
       </div>

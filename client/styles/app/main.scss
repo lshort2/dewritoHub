@@ -11,13 +11,33 @@
   }
 
   .maps{
+
+    .sort{
+      padding: 10px;
+      padding-top: 0;
+      cursor: pointer;
+      @include non-text-select();
+      color: gray;
+      font-weight: 600;
+      font-size: 14.4px;
+      span{
+        transition: .2s;
+        margin-right: 10px;
+      }
+      span:hover{
+        color: white;
+      }
+      .active{
+        color: white;
+      }
+    }
     .list{
       width: calc(100% - 250px);
       float: left;
       background: $foreColor;
       @include border-radius(3px);
 
-      .feed{
+      .feed, .sort{
         padding: 10px;
       }
       .con{
@@ -98,6 +118,7 @@
       .type{
         color: white;
         h5, h4{
+          cursor: pointer;
           padding:0;
           margin:0;
           display: inline-block;
@@ -115,6 +136,24 @@
     .right{
       float: right;
       color: gray;
+    }
+  }
+  .page{
+    display: table;
+    margin: 0 auto;
+    color: white;
+    @include non-text-select();
+    .fa{
+      color: gray;
+      cursor: pointer;
+      transition: .2s;
+    }
+    .fa:hover{
+      color: white;
+    }
+    .curPage{
+      margin-left: 20px;
+      margin-right: 20px;
     }
   }
 }
