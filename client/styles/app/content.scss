@@ -24,9 +24,18 @@
       overflow-x: auto;
     }
     .thumb{
-      height: 50px;
-      width: 100px;
+      height: 60px;
+      width: 96px;
+      margin-right: 10px;
+      margin-top: 5px;
+      cursor: pointer;
       object-fit: cover;
+    }
+    .thumb:after{
+      background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('http://i.imgur.com/idmIOUq.jpg');
+      content: '';
+      display: block;
+      position: relative;
     }
     .description{
       padding: 20px;

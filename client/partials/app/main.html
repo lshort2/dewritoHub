@@ -51,7 +51,7 @@
         </div>
         <section class="feed">
           {{#each posts}}
-          <div class="con postCard">
+          <div class="con postCard" id="{{_id}}">
             <img src="{{thumbnail}}" />
             <div class="about">
               <h3>{{title}}</h3>
@@ -78,7 +78,7 @@
                   <span class="number">{{views}}</span>
                 </span>
                 <span class="right">
-                  {{catagory}} - RATING
+                  {{gameMode}} - RATING
                 </span>
               </div>
             </div>

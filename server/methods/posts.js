@@ -65,7 +65,7 @@ Meteor.methods({
       function compressPic(){
         Jimp.read(imageBuffer, function (err, image) {
           if (err) throw err;
-          image.quality(80).getBuffer(Jimp.MIME_JPEG, uploadImage);
+          image.resize(1280, Jimp.AUTO).quality(80).getBuffer(Jimp.MIME_JPEG, uploadImage);
         })
       }
 
@@ -80,10 +80,10 @@ Meteor.methods({
       extension = '.jpg'
     }
 
-    var thumbnail = '/files/thumbs/'+daId+'_0.jpg'
-    var link = '/files/link/'+daId+'_0.jpg'
+    var thumbnail = '/uploading.jpg'
+    var link = '/uploading.jpg'
 
-    posts.insert({_id: daId, username: username, title: title, description:description, link:link, thumbnail: thumbnail, date: new Date(), tagList:testTags, comments: 0, score: 1, excerpt: excerpt, editDate: 'Never', views: 0, newDate: newDate, imgCount: newDat.length, downloads: 0, catagory:catagory2, minPlayer:minPlayer, maxPlayer:maxPlayer})
+    posts.insert({_id: daId, username: username, title: title, description:description, link:link, thumbnail: thumbnail, date: new Date(), tagList:testTags, comments: 0, score: 1, excerpt: excerpt, editDate: 'Never', views: 0, newDate: newDate, imgCount: newDat.length, downloads: 0, gameMode:catagory2, minPlayer:minPlayer, maxPlayer:maxPlayer})
     userStuff.update({username: Meteor.user().username}, {$push: {createdPosts: daId}})
     catagory.update({name:catagory2}, {$inc:{count: 1}})
   }

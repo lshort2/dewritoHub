@@ -2,21 +2,21 @@
   {{#with post}}
   <div class="content">
     <div class="view">
+      <div class="sixteen-nine">
+        <div class="dacontent">
+          <img class="hero" src="{{link}}" />
+        </div>
+      </div>
+      <div class="thumbs" id="{{_id}}thumb">
+      </div>
+      <script>
+      var count = parseInt({{imgCount}})
+      console.log(count)
+      for(var i = 0; i < count; i++){
+        $('#{{_id}}thumb').html($('#{{_id}}thumb').html() + '<img class="thumb" src="https://f000.backblazeb2.com/file/dh-thumbs/{{_id}}_'+i+'.jpg"/>')
+      }
+      </script>
       <div class="viewCon">
-        <div class="sixteen-nine">
-          <div class="dacontent">
-            <img class="hero" src="{{link}}" />
-          </div>
-        </div>
-        <div class="thumbs" id="{{_id}}thumb">
-        </div>
-        <script>
-        var count = parseInt({{imgCount}})
-        console.log(count)
-        for(var i = 0; i < count; i++){
-          $('#{{_id}}thumb').html($('#{{_id}}thumb').html() + '<img class="thumb" src="https://f000.backblazeb2.com/file/dh-thumbs/{{_id}}_'+i+'.jpg"/>')
-        }
-        </script>
         <div class="description">
           {{markdown description}}
         </div>
@@ -59,13 +59,16 @@
             <span class="info">Update Time</span><span class="right">{{editDate}}</span>
           </div>
           <div class="type">
-            <span class="info">Game Mode</span><span class="right">{{catagory}}</span>
+            <span class="info">Game Mode</span><span class="right">{{gameMode}}</span>
           </div>
           <div class="type">
             <span class="info">Min Players</span><span class="right">{{minPlayer}}</span>
           </div>
           <div class="type">
             <span class="info">Max Players</span><span class="right">{{maxPlayer}}</span>
+          </div>
+          <div class="type">
+            <span class="info">Views</span><span class="right">{{views}}</span>
           </div>
         </div>
       </div>

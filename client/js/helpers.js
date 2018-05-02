@@ -10,7 +10,7 @@ Template.main.helpers({
 
 Template.content.helpers({
   post: function(){
-    return posts.findOne({})
+    return posts.findOne({_id: currentPost.get()})
   }
 });
 

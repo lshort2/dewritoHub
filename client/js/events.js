@@ -99,10 +99,18 @@ Template.register.events({
   }
 })
 
+Template.content.events({
+  "click .thumb": function(e){
+     var thumb = e.currentTarget.src
+     thumb = thumb.replace('thumbs', 'images')
+     console.log(thumb)
+     $('.hero').attr('src', thumb)
+  }
+});
 Template.main.events({
   "click .postCard": function(event, template){
     reset()
-    currentPost.set('hello')
+    currentPost.set(event.currentTarget.id)
     appTracker.set('post')
   }
 });
