@@ -1,6 +1,6 @@
 Deps.autorun( function(){
   reactPost.set(true)
-  Meteor.subscribe('posts', postLimit.get(), currentUser.get(), pageNum.get(), sortBy.get())
+  Meteor.subscribe('posts', postLimit.get(), currentUser.get(), pageNum.get(), sortBy.get(), currentPost.get())
 });
 
 Deps.autorun(function(){
@@ -46,5 +46,32 @@ Meteor.notiDecay = {
         thisOne.remove();
       }, 400);
     }, 3800);
+  }
+}
+
+// push route
+Meteor.pushState ={
+  pushState:(target, type) =>{
+    console.log(target)
+    if(type == 'post'){
+      var title = posts.findOne({_id: target}).title
+      document.title = title
+      title = title.replace(/\s+/g, '-')
+      title = title.replace(/[^0-9\-\w]/ig, '')
+      title = title.toLocaleLowerCase()
+      title = encodeURI(title) + "/"
+      target = target + "/" +title
+      window.history.pushState("object or string", "Title", "/"+window.location.href.substring(window.location.href.lastIndexOf('/') + 1));
+      history.pushState('', document.title, "map/"+target);
+    }else if(type == 'user'){
+      reset()
+      window.history.pushState("object or string", "Title", "/"+window.location.href.substring(window.location.href.lastIndexOf('/') + 1));
+      history.pushState('', document.title, "user/"+target);
+      currentUser.set(target.toLocaleLowerCase())
+    }else if(target == "home" || !target){
+      pageNum.set('')
+      history.pushState('', document.title, "/");
+      document.title = "DewRito Hub"
+    }
   }
 }

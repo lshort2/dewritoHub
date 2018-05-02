@@ -34,6 +34,7 @@ Template.nav.events({
   },
   'click .brand': ()=>{
     reset()
+    Meteor.pushState.pushState()
   },
   'click .upload': ()=>{
     reset()
@@ -132,6 +133,7 @@ Template.main.events({
   "click .postCard": function(event, template){
     reset()
     currentPost.set(event.currentTarget.id)
+    Meteor.pushState.pushState(event.currentTarget.id, 'post')
     appTracker.set('post')
   },
   'click .fa-chevron-left':()=>{
