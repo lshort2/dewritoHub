@@ -42,3 +42,27 @@ Template.registerHelper("create", function(argument){
 Template.registerHelper("settings", function(argument){
   if(appTracker.get() == 'settings') return true;
 });
+
+
+// markdown
+Template.registerHelper('markdown', function (text, options) {
+  kramed.setOptions({
+    renderer: new kramed.Renderer()
+    , gfm: true
+    , tables: true
+    , breaks: false
+    , pedantic: false
+    , sanitize: true
+    , smartLists: true
+    , smartypants: false
+  });
+  text = kramed(text);
+  //text = text.replace(/\n{1,9}/g, '<br>');
+  text = text.replace(/\\n/g, '');
+
+  //text = text.replace(/(?:\\[rn])+/g, '<br><br>');
+  text = text.replace(/\\/g, '');
+  text = text.slice(0, -5);
+
+  return new Spacebars.SafeString(text);
+});

@@ -22,3 +22,5 @@ But money doesn't hurt either! You can find ways to contribute to us at:
 * [Patreon](https://Patreon.com/finchMFG)
 * [Ko-fi](https://ko-fi.com/finchMFG)
 * [PayPal](https://paypal.me/finchMFG)
+
+I am not affiliated with ForgeHub or the ElDewrito team.

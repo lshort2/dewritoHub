@@ -20,6 +20,14 @@
       object-fit: cover;
       display: block;
     }
+    .thumbs{
+      overflow-x: auto;
+    }
+    .thumb{
+      height: 50px;
+      width: 100px;
+      object-fit: cover;
+    }
     .description{
       padding: 20px;
       color: #d8d8d8;
@@ -112,5 +120,28 @@
   .right{
     float: right;
     color: white;
+  }
+}
+
+.sixteen-nine {
+  position: relative;
+}
+.sixteen-nine:before {
+  display: block;
+  content: "";
+  width: 100%;
+  padding-top: 56.25%;
+}
+.sixteen-nine > .dacontent {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.dacontent{
+  overflow: hidden;
+  img{
+    height: 100%;
   }
 }

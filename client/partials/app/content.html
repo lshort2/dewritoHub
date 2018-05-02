@@ -3,10 +3,26 @@
   <div class="content">
     <div class="view">
       <div class="viewCon">
-
-        <img class="hero" src="{{link}}" />
+        <div class="sixteen-nine">
+          <div class="dacontent">
+            <img class="hero" src="{{link}}" />
+          </div>
+        </div>
+        <div class="thumbs" id="{{_id}}thumb">
+        </div>
+        <script>
+        var count = parseInt({{imgCount}})
+        console.log(count)
+        for(var i = 0; i < count; i++){
+          $('#{{_id}}thumb').html($('#{{_id}}thumb').html() + '<img class="thumb" src="https://f000.backblazeb2.com/file/dh-thumbs/{{_id}}_'+i+'.jpg"/>')
+        }
+        </script>
         <div class="description">
-          {{description}}
+          {{markdown description}}
+        </div>
+
+        <div class="tags">
+          {{tags}}
         </div>
       </div>
       <input placeholder="New Comment"/>
@@ -37,7 +53,7 @@
             <span class="info">Downloads</span><span class="right">{{downloads}}</span>
           </div>
           <div class="type">
-            <span class="info">Upload Time</span><span class="right" title="Tue May 1, 6:04PM">{{newDate}}</span>
+            <span class="info">Upload Time</span><span class="right" title="{{date}}">{{livestamp date}}</span>
           </div>
           <div class="type">
             <span class="info">Update Time</span><span class="right">{{editDate}}</span>
