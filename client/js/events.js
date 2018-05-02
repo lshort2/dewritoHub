@@ -18,9 +18,26 @@ function notiSet(type, text){
   Meteor.notiDecay.notiDecay(id)
 }
 
+function reset(){
+  appTracker.set('')
+  currentPost.set('')
+  currentUser.set('')
+  postLimit.set(20)
+  postSearch.set('')
+  pageNum.set('')
+  lastPage.set(0)
+}
+
 Template.nav.events({
   "click .createAcc": function(event, template){
     $('.registerModal').show()
+  },
+  'click .brand': ()=>{
+    reset()
+  },
+  'click .upload': ()=>{
+    reset()
+    appTracker.set('create')
   }
 });
 
@@ -81,3 +98,11 @@ Template.register.events({
     }
   }
 })
+
+Template.main.events({
+  "click .postCard": function(event, template){
+    reset()
+    currentPost.set('hello')
+    appTracker.set('post')
+  }
+});

@@ -11,6 +11,7 @@ Meteor.methods({
     }
   },
   'userStuffCreate': function (username){
+    console.log('firing')
     if(userStuff.findOne({username: username})){
 
     }

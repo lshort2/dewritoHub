@@ -1,0 +1,145 @@
+<template name="create">
+  <section class="create">
+    <h1 class="location">Upload Map</h1>
+    <div class="con">
+      <div class="section">
+        <h4>Media</h4>
+        {{>mediaCon}}
+      </div>
+
+      <div class="section">
+        <h4 >Title</h4>
+        <input class="mapTitle" placeholder='Title...'>
+      </div>
+
+      <div class="section">
+        <h4>Description</h4>
+        <textarea class="description" placeholder="Markdown friendly!"></textarea>
+      </div>
+
+      <div class="section">
+        <h4>Tags</h4>
+        <input placeholder="#Tags" class="tags" />
+      </div>
+
+      <div class="section">
+        <h4>Video URL</h4>
+        <input placeholder="YouTube URL" class="url" />
+      </div>
+
+      <div class="section">
+        <h4>Map File</h4>
+        <input id="mapFile" type="file" accept=".zip, .7zip, .rar, .tar, .tar.gz">
+      </div>
+
+      <button class="button-light">Cancel</button>
+      <button class="button">Post</button>
+
+    </div>
+  </section>
+</template>
+
+<!-- seperated so it's easier to read -->
+<template name="mediaCon">
+  <div class="mediaCon">
+    <div class="pictureCon">
+      <div class="fa fa-cloud-upload">
+        <img src=""  id="preview"/>
+      </div>
+      <div class="label">
+        Drag and Drop a picture!
+      </div>
+      <div class="button">
+        Add from Computer
+      </div>
+
+      <input id="files" type="file" accept=".png, .jpg, .jpeg">
+    </div>
+
+    <div class="pictureCon">
+      <div class="fa fa-cloud-upload">
+        <img src=""  id="preview1"/>
+      </div>
+      <div class="label">
+        Drag and Drop a picture!
+      </div>
+      <div class="button">
+        Add from Computer
+      </div>
+
+      <input id="files1" type="file" accept=".png, .jpg, .jpeg">
+    </div>
+
+    <div class="pictureCon">
+      <div class="fa fa-cloud-upload">
+        <img src=""  id="preview2"/>
+      </div>
+      <div class="label">
+        Drag and Drop a picture!
+      </div>
+      <div class="button">
+        Add from Computer
+      </div>
+
+      <input id="files2" type="file" accept=".png, .jpg, .jpeg">
+    </div>
+
+    <div class="pictureCon">
+      <div class="fa fa-cloud-upload">
+        <img src=""  id="preview3"/>
+      </div>
+      <div class="label">
+        Drag and Drop a picture!
+      </div>
+      <div class="button">
+        Add from Computer
+      </div>
+
+      <input id="files3" type="file" accept=".png, .jpg, .jpeg">
+    </div>
+
+    <div class="pictureCon">
+      <div class="fa fa-cloud-upload">
+        <img src=""  id="preview4"/>
+      </div>
+      <div class="label">
+        Drag and Drop a picture!
+      </div>
+      <div class="button">
+        Add from Computer
+      </div>
+
+      <input id="files4" type="file" accept=".png, .jpg, .jpeg">
+    </div>
+    <script charset="utf-8">
+    function changes(target, preview){
+      if(/^image/.test($(target)[0].files[0].type)){
+        var file = $(target)[0].files[0];
+        var reader = new FileReader();
+        reader.onload = function(fileLoadEvent) {
+          $(preview).css('display', 'block');
+          $(preview).attr('src', reader.result);
+        };
+        reader.readAsDataURL(file);
+      }else{
+        notiSet('fail', 'Only Images, please!')
+      }
+    }
+    $('#files').on('change', function(){
+      changes('#files', '#preview')
+    })
+    $('#files1').on('change', function(){
+      changes('#files1', '#preview1')
+    })
+    $('#files2').on('change', function(){
+      changes('#files2', '#preview2')
+    })
+    $('#files3').on('change', function(){
+      changes('#files3', '#preview3')
+    })
+    $('#files4').on('change', function(){
+      changes('#files4', '#preview4')
+    })
+    </script>
+  </div>
+</template>

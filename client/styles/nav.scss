@@ -58,7 +58,7 @@ nav{
     position: relative;
   }
 
-  .createAcc{
+  .createAcc, .upload{
     @include border-radius(7px);
     border: 2px solid white;
     float: right;

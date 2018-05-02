@@ -13,8 +13,15 @@
   <div class="app">
     <!-- all scrolling here -->
     <div class="mount">
+      {{#if post}}
       {{>content}}
-      <!--{{>main}}-->
+      {{/if}}
+      {{#if home}}
+      {{>main}}
+      {{/if}}
+      {{#if create}}
+      {{>create}}
+      {{/if}}
     </div>
   </div>
 </template>
