@@ -16,6 +16,26 @@
         $('#{{_id}}thumb').html($('#{{_id}}thumb').html() + '<img class="thumb" src="https://f000.backblazeb2.com/file/dh-thumbs/{{_id}}_'+i+'.jpg"/>')
       }
       </script>
+      <div class="viewCon actView">
+        <div class="actions">
+          <span class="action">
+            <span class="fa fa-chevron-up"></span>
+            <span class="label">Upvote</span>
+          </span>
+          <span class="action">
+            <span class="fa fa-chevron-down"></span>
+            <span class="label">Downvote</span>
+          </span>
+          <span class="action">
+            <span class="fa fa-star"></span>
+            <span class="label">Favorite</span>
+          </span>
+          <span class="action">
+            <span class="fa fa-flag"></span>
+            <span class="label">Report</span>
+          </span>
+        </div>
+      </div>
       <div class="viewCon">
         <div class="description">
           {{markdown description}}
@@ -74,5 +94,8 @@
       </div>
     </aside>
   </div>
+  <script>
+  Meteor.call('postExists', currentPost.get())
+  </script>
   {{/with}}
 </template>

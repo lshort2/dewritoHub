@@ -55,12 +55,15 @@
         <span class="option">
           Featured
         </span>
+        <span class="option">
+          Top
+        </span>
       </div>
       <div class="list">
 
         <section class="feed">
           {{#each posts}}
-          <div class="con postCard" id="{{_id}}">
+          <a class="con postCard" id="{{_id}}" href="map/{{_id}}" target="_blank">
             <img src="{{thumbnail}}" />
             <div class="about">
               <h3>{{title}}</h3>
@@ -91,7 +94,7 @@
                 </span>
               </div>
             </div>
-          </div>
+          </a>
           {{/each}}
           <div class="page">
             <span class="fa fa-chevron-left" title="Back"></span>

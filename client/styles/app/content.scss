@@ -15,6 +15,30 @@
       @include border-radius(3px);
       overflow: hidden;
     }
+    .actView{
+      margin-bottom: 10px;
+    }
+    .actions{
+      padding: 20px 10px;
+      .action{
+        padding: 10px;
+        font-size: 14.4px;
+        color: white;
+        color: gray;
+        transition: .2s;
+        background: #1e2d2e;
+        margin-right: 10px;
+        @include border-radius(4px);
+        cursor: pointer;
+        @include non-text-select();
+        .label{
+          font-size: 12px;
+        }
+      }
+      .action:hover{
+        color: white;
+      }
+    }
     .hero{
       width: 100%;
       object-fit: cover;

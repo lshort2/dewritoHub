@@ -127,11 +127,15 @@ Template.content.events({
      thumb = thumb.replace('thumbs', 'images')
      console.log(thumb)
      $('.hero').attr('src', thumb)
+  },
+  'click .download': ()=>{
+    Meteor.call('download', currentPost.get())
   }
 });
 Template.main.events({
   "click .postCard": function(event, template){
     reset()
+    event.preventDefault()
     currentPost.set(event.currentTarget.id)
     Meteor.pushState.pushState(event.currentTarget.id, 'post')
     appTracker.set('post')
@@ -141,13 +145,16 @@ Template.main.events({
       // do nothing
     }else{
       pageNum.set(pageNum.get() - 1)
+      history.pushState('', document.title, "/page="+pageNum.get());
     }
   },
   'click .fa-chevron-right':()=>{
     if(pageNum.get() < 1){
       pageNum.set(2)
+      history.pushState('', document.title, "/page="+pageNum.get());
     }else{
       pageNum.set(pageNum.get() + 1)
+      history.pushState('', document.title, "/page="+pageNum.get());
     }
   }
 });

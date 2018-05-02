@@ -51,3 +51,15 @@ Meteor.methods({
     }
   }
 })
+
+Meteor.methods({
+  'download' : (params) =>{
+    if(posts.findOne({_id: params})){
+      setTimeout(function(){
+        Fiber(function() {
+          posts.update({_id: params}, {$inc: {downloads: 1}})
+        }).run();
+      }, Math.floor((Math.random() * 100000) + 10000));
+    }
+  }
+})
