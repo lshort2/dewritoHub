@@ -38,6 +38,27 @@ Template.nav.events({
   'click .upload': ()=>{
     reset()
     appTracker.set('create')
+  },
+  'click .fa-cog': ()=>{
+    $(".profileDropdown").show()
+  },
+  'click .logout': ()=>{
+    Meteor.logout();
+  },
+  'click .appSet': ()=>{
+    reset()
+    appTracker.set('settings')
+  }
+});
+
+Template.settings.events({
+  "click .goGen": function(event, template){
+     $('.gen').show()
+     $('.adv').hide()
+  },
+  'click .goAdv': ()=>{
+    $('.gen').hide()
+    $('.adv').show()
   }
 });
 

@@ -13,9 +13,33 @@
         <div class="upload">
           Upload
         </div>
-        <div class="fa fa-cog">
+        <span class="profile">
+          <span class="fa fa-cog"></span>
+          <div class="dropdown profileDropdown">
+            <span class="object username">@{{currentUser.username}}</span>
+            <div class="section">
+              <div class="object goProfile">
+                <span class="fa ion-android-person"></span>
+                <span class="label">Profile</span>
+              </div>
 
-        </div>
+              <div class="object appSet">
+                <span class="fa ion-android-settings"></span>
+                <span class="label">Settings</span>
+              </div>
+            </div>
+            <div class="section">
+              <div class="object logout">
+                <div class="label">
+                  Logout
+                </div>
+              </div>
+            </div>
+          </div>
+          <script>
+          Meteor.modals.closeDropdown('.profileNav', '.profileDropdown')
+          </script>
+        </span>
         <div class="fa fa-bell">
 
         </div>
