@@ -78,10 +78,12 @@ Meteor.methods({
       }
 
       extension = '.jpg'
-      thumbnail = '/files/thumbs/'+daId+'_0.jpg'
     }
 
-    posts.insert({_id: daId, username: username, title: title, description:description, link:link, thumbnail: thumbnail, date: new Date(), tagList:testTags, comments: 0, score: 1, excerpt: excerpt, editDate: 'Never', views: 0, newDate: newDate, imgCount: newDat.length})
+    var thumbnail = '/files/thumbs/'+daId+'_0.jpg'
+    var link = '/files/link/'+daId+'_0.jpg'
+
+    posts.insert({_id: daId, username: username, title: title, description:description, link:link, thumbnail: thumbnail, date: new Date(), tagList:testTags, comments: 0, score: 1, excerpt: excerpt, editDate: 'Never', views: 0, newDate: newDate, imgCount: newDat.length, downloads: 0, catagory:catagory, minPlayer:minPlayer, maxPlayer:maxPlayer})
 
     userStuff.update({username: Meteor.user().username}, {$push: {createdPosts: daId}})
   }

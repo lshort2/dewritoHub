@@ -1,36 +1,12 @@
 <template name="content">
+  {{#with post}}
   <div class="content">
     <div class="view">
       <div class="viewCon">
 
-        <img class="hero" src="https://www.forgehub.com/attachments/desktop-screenshot-2018-05-01-12-28-42-46-jpg.65547/" />
+        <img class="hero" src="{{link}}" />
         <div class="description">
-          Description:
-          <br />
-          "Tetris", heavily inspired by "Toy Factory (Tetris) - Darth Human" from Halo Reach, made into Halo Online. This is an earlier version, but I've rigorously tested it back and forth for the past 2 days. It's taken quite a bit of my time, so I just want to get this version out at least, to see if there's still crashing as I can't host a 16 player lobby with my internet. There was crashing last time my friend hosted a lobby with more than 10 people, I have tried to identify and fix the issue, but I do not know if the fix actually worked. I have two versions, "Tetris v0.9" version, and the "Tetris v0.84" version. Both map files are included. I believe the crashing is correlated to too much sound emanating from gravity lifts or just weapons in general. The changes I've done since that crash was to remove pistols from the non-infected and remove some gravity lifts in the Tetris v0.9 version. I suggest using that, but some items and props may not flow down properly or well.
-          <br />
-          <br />
-
-          How to Play:
-          <br />
-          The objective is simple, non-infected players must use fallen objects or the side fences that spawn in at -60 seconds and -150 seconds to reach the corner teleporters to then kill the Infected player which flips vehicles and drops objects into the pit. It's a very similar concept to Trash Compactor, except instead of horizontal, it's vertical.
-          <br />
-          <br />
-
-          Map name:
-          <br />
-          "Tetris v0.9"- Play this version, tell me if this crashes. Should be fixed?
-          <br />
-          "Tetris v0.85" - Only do this one if you want to help me test what may be crashing it.
-          <br />
-          <br />
-
-          Game Variant:
-          <br />
-          <br />
-
-          "Tetris - Yangjo"
-
+          {{description}}
         </div>
       </div>
       <input placeholder="New Comment"/>
@@ -55,28 +31,29 @@
         </div>
         <div class="con">
           <div class="type">
-            <span class="info">Author</span><span class="right">finchMFG</span>
+            <span class="info">Author</span><span class="right">{{username}}</span>
           </div>
           <div class="type">
-            <span class="info">Downloads</span><span class="right">25</span>
+            <span class="info">Downloads</span><span class="right">{{downloads}}</span>
           </div>
           <div class="type">
-            <span class="info">Upload Time</span><span class="right" title="Tue May 1, 6:04PM">7 hours ago</span>
+            <span class="info">Upload Time</span><span class="right" title="Tue May 1, 6:04PM">{{newDate}}</span>
           </div>
           <div class="type">
-            <span class="info">Update Time</span><span class="right">Never</span>
+            <span class="info">Update Time</span><span class="right">{{editDate}}</span>
           </div>
           <div class="type">
-            <span class="info">Game Mode</span><span class="right">Slyer</span>
+            <span class="info">Game Mode</span><span class="right">{{catagory}}</span>
           </div>
           <div class="type">
-            <span class="info">Min Players</span><span class="right">10</span>
+            <span class="info">Min Players</span><span class="right">{{minPlayer}}</span>
           </div>
           <div class="type">
-            <span class="info">Max Players</span><span class="right">25</span>
+            <span class="info">Max Players</span><span class="right">{{maxPlayer}}</span>
           </div>
         </div>
       </div>
     </aside>
   </div>
+  {{/with}}
 </template>

@@ -1,3 +1,16 @@
+Deps.autorun( function(){
+  reactPost.set(true)
+  Meteor.subscribe('posts')
+});
+
+Deps.autorun(function(){
+  Meteor.subscribe('comments', currentPost.get())
+});
+
+Deps.autorun( function(){
+  Meteor.subscribe('userStuff', currentUser.get())
+});
+
 //modal closer
 Meteor.modals ={
   closeModal : (target, target2) =>{

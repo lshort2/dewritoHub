@@ -1,5 +1,15 @@
 // put template helpers here
+Template.main.helpers({
+  posts: function(){
+    return posts.find({})
+  }
+});
 
+Template.content.helpers({
+  post: function(){
+    return posts.findOne({})
+  }
+});
 
 // put global helpers here
 
