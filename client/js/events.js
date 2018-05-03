@@ -26,6 +26,11 @@ function reset(){
   postSearch.set('')
   pageNum.set('')
   lastPage.set(0)
+
+  $('.gameSelect').each(function() {
+    $( this ).removeClass('active')
+  });
+  currentGame.set('')
 }
 
 Template.nav.events({
@@ -54,8 +59,8 @@ Template.nav.events({
 
 Template.settings.events({
   "click .goGen": function(event, template){
-     $('.gen').show()
-     $('.adv').hide()
+    $('.gen').show()
+    $('.adv').hide()
   },
   'click .goAdv': ()=>{
     $('.gen').hide()
@@ -123,10 +128,10 @@ Template.register.events({
 
 Template.content.events({
   "click .thumb": function(e){
-     var thumb = e.currentTarget.src
-     thumb = thumb.replace('thumbs', 'images')
-     console.log(thumb)
-     $('.hero').attr('src', thumb)
+    var thumb = e.currentTarget.src
+    thumb = thumb.replace('thumbs', 'images')
+    console.log(thumb)
+    $('.hero').attr('src', thumb)
   },
   'click .download': ()=>{
     Meteor.call('download', currentPost.get())
@@ -156,6 +161,13 @@ Template.main.events({
       pageNum.set(pageNum.get() + 1)
       history.pushState('', document.title, "/page="+pageNum.get());
     }
+  },
+  'click .gameSelect':(e)=>{
+    currentGame.set($(e.currentTarget).html())
+    $('.gameSelect').each(function() {
+      $( this ).removeClass('active')
+    });
+    $(e.currentTarget).addClass('active')
   }
 });
 
@@ -175,7 +187,7 @@ Template.create.events({
     var img = []
     var imgDat = []
     for(var i = 0; i < maxImages; i++){
-        img.push($('#files'+[i])[0].files[0])
+      img.push($('#files'+[i])[0].files[0])
     }
 
     var newImages = [];

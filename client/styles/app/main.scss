@@ -105,12 +105,28 @@
       margin-bottom: 40px;
       display: inline-block;
       @include border-radius(3px);
+      select{
+        @include border-radius(2px);
+        width: calc(100%);
+        border: none;
+        box-shadow: 2px 2px 8px -1px rgba(17, 17, 17, 0.129412);
+        padding: 7px 7px 7px 7px;
+        height: 24px;
+        position: relative;
+        background: white;
+        float: left;
+        margin-top: 5px;
+        height: auto;
+      }
+
       .header{
         padding:0;
         margin: 0;
       }
       .con{
         padding: 10px;
+        display: inline-block;
+        width: calc(100% - 20px);
       }
       .conBorder{
         border-bottom: 1px solid #494949;
@@ -118,11 +134,20 @@
       .type{
         color: white;
         h5, h4{
+          color: gray;
           cursor: pointer;
+          font-size: 14px;
           padding:0;
           margin:0;
+          margin-bottom: 5px;
           display: inline-block;
-
+          transition: .2s;
+        }
+        h5:hover{
+          color: white;
+        }
+        .active{
+          color:white;
         }
       }
       .score{
@@ -154,6 +179,60 @@
     .curPage{
       margin-left: 20px;
       margin-right: 20px;
+    }
+  }
+  .featured{
+    margin-bottom: 30px;
+    display: inline-block;
+    width: 100%;
+  }
+  .sixteen-nine{
+    width: calc( 33% - 20px);
+    margin-left: 10px;
+    margin-right: 10px;
+    float: left;
+    .dacontent{
+      @include border-radius(4px);
+    }
+    img{
+      width: 100%;
+      height: auto;
+    }
+    .banner{
+      position: absolute;
+      z-index: 2;
+      background: rgba(0, 0, 0, 0.52);
+      bottom: 20px;
+      width: calc(100% - 40px);
+      color: #ececec;
+      padding: 10px 20px;
+      .header{
+        font-size: 17px;
+        font-weight: 700;
+        font-family: $font-ops;
+      }
+      .author{
+        color: gray;
+        position: relative;
+        top: 3px;
+      }
+      .username{
+        cursor: pointer;
+        transition: .2s;
+      }
+      .username:hover{
+        color: white;
+      }
+      .gamemode, .author{
+        font-size: 14px;
+        @include non-text-select();
+      }
+      .gamemode{
+        position: relative;
+        float: right;
+        color: lightgray;
+        cursor: default;
+      }
     }
   }
 }

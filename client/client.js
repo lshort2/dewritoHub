@@ -1,6 +1,6 @@
 Deps.autorun( function(){
   reactPost.set(true)
-  Meteor.subscribe('posts', postLimit.get(), currentUser.get(), pageNum.get(), sortBy.get(), currentPost.get())
+  Meteor.subscribe('posts', postLimit.get(), currentUser.get(), pageNum.get(), sortBy.get(), currentPost.get(), currentGame.get())
 });
 
 Deps.autorun(function(){

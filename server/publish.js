@@ -1,4 +1,4 @@
-Meteor.publish("posts", function(limit, currentUser, page, sortBy, post){
+Meteor.publish("posts", function(limit, currentUser, page, sortBy, post, game){
   var dl = limit || 5;
   var skip = 0
   if(page){
@@ -8,7 +8,11 @@ Meteor.publish("posts", function(limit, currentUser, page, sortBy, post){
   if(post){
     return posts.find({_id: post})
   }else{
-    return posts.find({}, {sort: {date: -1}, skip: skip, limit: dl});
+    if(game){
+      return posts.find({gameMode: game}, {sort: {date: -1}, skip: skip, limit: dl});
+    }else{
+      return posts.find({}, {sort: {date: -1}, skip: skip, limit: dl});
+    }
   }
 });
 
