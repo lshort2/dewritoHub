@@ -43,6 +43,43 @@
       width: 100%;
       object-fit: cover;
       display: block;
+      @include border-radius(4px);
+    }
+    .banner{
+      position: absolute;
+      z-index: 2;
+      background: rgba(0, 0, 0, 0.52);
+      bottom: 40px;
+      width: calc(100% - 80px);
+      color: #ececec;
+      padding: 20px 40px;
+      .header{
+        font-size: 20px;
+        font-weight: 700;
+        font-family: $font-ops;
+      }
+      .author{
+        color: gray;
+        position: relative;
+        top: 3px;
+      }
+      .username{
+        cursor: pointer;
+        transition: .2s;
+      }
+      .username:hover{
+        color: white;
+      }
+      .gamemode, .author{
+        @include non-text-select();
+      }
+      .gamemode{
+        position: relative;
+        top: -4px;
+        float: right;
+        color: lightgray;
+        cursor: default;
+      }
     }
     .thumbs{
       overflow-x: auto;
