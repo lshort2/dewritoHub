@@ -35,18 +35,6 @@ function reset(){
   $(document).scrollTop(0)
 }
 
-function searchPost(target){
-  //to save on bandwidth, only send the data when enter is pressed
-  if(event.keyCode == 13){
-    var searchVal = $(target).val()
-    postSearch.set(searchVal)
-  }
-  //or when the search is empty
-  else if($(target).val().length == 0){
-    postSearch.set($(target).val())
-  }
-}
-
 Template.nav.events({
   "click .createAcc": function(event, template){
     $('.registerModal').show()
@@ -72,8 +60,15 @@ Template.nav.events({
   'click .saved':()=>{
     saved.set('go')
   },
-  'keyup .search': ()=>{
-    searchPost('.search');
+  'keyup .search': (event)=>{
+    if(event.keyCode == 13){
+      var searchVal = $('.search').val()
+      postSearch.set(searchVal)
+    }
+    //or when the search is empty
+    else if($(target).val().length == 0){
+      postSearch.set($('.search').val())
+    }
   }
 });
 

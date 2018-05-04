@@ -119,7 +119,7 @@ Meteor.methods({
 Meteor.methods({
   featured:function(){
     var theFeatured = featured.find({}).map(function(e) { return e._id; })
-
+    console.log(theFeatured)
     var postInfo = [];
 
     for(var i = 0; i < theFeatured.length; i++){
