@@ -1,6 +1,5 @@
 var Jimp = require("jimp");
 const imagemin = require('imagemin');
-Fiber = Npm.require('fibers');
 var fs = Npm.require('fs');
 
 Meteor.methods({
@@ -94,36 +93,9 @@ Meteor.methods({
     var thumbnail = '/uploading.jpg'
     var link = '/uploading.jpg'
 
-    posts.insert({_id: daId, username: username, title: title, description:description, link:link, thumbnail: thumbnail, date: new Date(), tagList:testTags, comments: 0, score: 1, excerpt: excerpt, editDate: 'Never', views: 0, newDate: newDate, imgCount: newDat.length, downloads: 0, gameMode:catagory2, minPlayer:minPlayer, maxPlayer:maxPlayer})
+    posts.insert({_id: daId, username: username, title: title, description:description, link:link, thumbnail: thumbnail, date: new Date(), tagList:testTags, comments: 0, score: 1, excerpt: excerpt, editDate: 'Never', views: 0, newDate: newDate, imgCount: newDat.length, downloads: 0, gameMode:catagory2, minPlayer:minPlayer, maxPlayer:maxPlayer, upUsers:[username], downUsers:[]})
     userStuff.update({username: Meteor.user().username}, {$push: {createdPosts: daId}})
     catagory.update({name:catagory2}, {$inc:{count: 1}})
-  }
-});
-
-Meteor.methods({
-  createComment:function(comment){
-    comment.username = Meteor.user().username;
-    var daId = Random.id();
-    comment.saveid = daId
-
-    var newDate = new Date()
-    newDate = newDate.toString().split(' ')
-    function hourConvert(){
-      var timeString = newDate[4];
-      var H = +timeString.substr(0, 2);
-      var h = H % 12 || 12;
-      var ampm = (H < 12 || H === 24) ? "AM" : "PM";
-      timeString = h + timeString.substr(2, 3) + ampm;
-      newDate[4] = timeString
-    }
-    hourConvert()
-    newDate = newDate[1] + ' ' + newDate[2] + ' ' + newDate[3] + ' ' + newDate[4]
-
-    comment.date = new Date();
-    comment.newDate = newDate
-    comments.insert(comment);
-
-    posts.update({_id: comment.postId}, {$inc:{comments: 1}});
   }
 });
 
@@ -156,3 +128,45 @@ Meteor.methods({
     return [postInfo[0], postInfo[1], [postInfo[3]]]
   }
 });
+
+//the post utility / action methods
+Meteor.methods({
+  'upvote': (id) =>{
+    try{
+      var user = Meteor.user().username
+      if(posts.findOne({_id: id, upUsers: { $in: [user] } })){
+        posts.update({_id: id}, {$pull: {upUsers: user}})
+        posts.update({_id: id}, {$inc: {newScore: -1}})
+      }else if(posts.findOne({_id: id, downUsers: { $in: [user] }})){
+        posts.update({_id: id}, {$push: {upUsers: user}})
+        posts.update({_id: id}, {$inc: {newScore: 2}})
+        posts.update({_id: id}, {$pull: {downUsers: user}})
+      }else{
+        posts.update({_id: id}, {$push: {upUsers: user}})
+        //pull any potential downpaw
+        posts.update({_id: id}, {$pull: {downUsers: user}})
+        posts.update({_id: id}, {$inc: {newScore: 1}})
+      }
+      computeScore(id)
+    }catch(e){}
+  },
+  'downvote': (id) =>{
+    try{
+      var user = Meteor.user().username
+      if(posts.findOne({_id: id, downUsers: { $in: [user] } })){
+        posts.update({_id: id}, {$pull: {downUsers: user}})
+        posts.update({_id: id}, {$inc: {newScore: 1}})
+      }else if(posts.findOne({_id: id, upUsers: { $in: [user] }})){
+        posts.update({_id: id}, {$push: {downUsers: user}})
+        posts.update({_id: id}, {$inc: {newScore: -2}})
+        posts.update({_id: id}, {$pull: {upUsers: user}})
+      }else{
+        posts.update({_id: id}, {$push: {downUsers: user}})
+        //pull any potential downpaw
+        posts.update({_id: id}, {$pull: {upUsers: user}})
+        posts.update({_id: id}, {$inc: {newScore: -1}})
+      }
+      computeScore(id)
+    }catch(e){}
+  }
+})

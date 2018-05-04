@@ -151,7 +151,25 @@ Template.content.events({
   },
   'click .postDelete': ()=>{
     $('.deleteModal').show()
-  }
+  },
+  'click .upVote':(e)=>{
+    Meteor.call('upvote', e.currentTarget.id)
+    if(!$(e.currentTarget).addClass('voted')){
+      $(e.currentTarget).addClass('voted')
+    }else{
+      $(e.currentTarget).removeClass('voted')
+    }
+    $('.downVote').removeClass('voted')
+  },
+  'click .downVote': (e)=>{
+    Meteor.call('downvote', e.currentTarget.id)
+    if(!$(e.currentTarget).addClass('voted')){
+      $(e.currentTarget).addClass('voted')
+    }else{
+      $(e.currentTarget).removeClass('voted')
+    }
+    $('.upVote').removeClass('voted')
+  },
 });
 
 Template.delete.events({

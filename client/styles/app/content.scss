@@ -6,6 +6,9 @@
   width: $appWidth;
   height: calc(100% - 80px);
 
+  .voted{
+    color:white!important;
+  }
   .view{
     width: calc(100% - 250px);
     float: left;

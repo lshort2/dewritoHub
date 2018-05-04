@@ -30,11 +30,18 @@
       </script>
       <div class="viewCon actView">
         <div class="actions">
-          <span class="action">
+          {{#if cons upUsers currentUser.username}}
+          <script>$('.upVote').addClass('voted');$('.downVote').removeClass('voted')</script>
+          {{/if}}
+          {{#if cons downUsers currentUser.username}}
+          <script>$('.downVote').addClass('voted');$('.upVote').removeClass('voted')</script>
+          {{/if}}
+
+          <span class="action upVote" id="{{_id}}">
             <span class="fa fa-chevron-up"></span>
             <span class="label">Upvote</span>
           </span>
-          <span class="action">
+          <span class="action  downVote" id={{_id}}>
             <span class="fa fa-chevron-down"></span>
             <span class="label">Downvote</span>
           </span>
