@@ -29,9 +29,25 @@ Meteor.publish("posts", function(limit, currentUser, page, sortBy, post, game, s
         }
       }else{
         if(game){
-          return posts.find({gameMode: game}, {sort: {date: -1}, skip: skip, limit: dl});
+          if(sortBy == 'new'){
+            return posts.find({gameMode: game}, {sort: {date: -1}, skip: skip, limit: dl});
+          }
+          if(sortBy == 'hot'){
+            return posts.find({gameMode: game}, {sort: {score: -1}, skip: skip, limit: dl});
+          }
+          if(sortBy == 'top'){
+            return posts.find({gameMode: game}, {sort: {newScore: -1}, skip: skip, limit: dl});
+          }
         }else{
-          return posts.find({}, {sort: {date: -1}, skip: skip, limit: dl});
+          if(sortBy == 'new'){
+            return posts.find({}, {sort: {date: -1}, skip: skip, limit: dl});
+          }
+          if(sortBy == 'hot'){
+            return posts.find({}, {sort: {score: -1}, skip: skip, limit: dl});
+          }
+          if(sortBy == 'top'){
+            return posts.find({}, {sort: {newScore: -1}, skip: skip, limit: dl});
+          }
         }
       }
     }

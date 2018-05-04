@@ -70,98 +70,70 @@
 
         <div class="catagory">
           <div class="con legal">
-            <span class="link goPrivy">Privacy Policy</span>&nbsp;&nbsp;·&nbsp;&nbsp;<span class="link">Source</span>&nbsp;&nbsp;·&nbsp;&nbsp;<span class="link goTos">Terms of Service </span>
+            <span class="link goPrivy">Privacy Policy</span>&nbsp;&nbsp;·&nbsp;&nbsp;<a href="https://github.com/finchMFG/dewritoHub" target="_blank" class="link">Source</a>&nbsp;&nbsp;·&nbsp;&nbsp;<span class="link goTos">Terms of Service </span>
           </div>
         </div>
-        <!-- offline for now
-        <div class="catagory">
-        <div class="con conBorder">
-        <h5 class="header">TOP RATED</h5>
+
+      </aside>
+      <div class="sort">
+        <span class="option sortNew active">
+          New
+        </span>
+        <span class="option sortHot">
+          Trending
+        </span>
+        <span class="option sortTop">
+          Top
+        </span>
       </div>
-      <div class="con">
-      <div class="type">
-      <h5>DURRDAM</h5><h4 class="right score">8.7</h4>
-      <div class="mode">
-      Slayer
-    </div>
-  </div>
+      <div class="list">
 
-  <div class="type">
-  <h5>De Straat</h5><h4 class="right score">8.7</h4>
-  <div class="mode">
-  Oddball
-</div>
-</div>
+        <section class="feed">
+          {{#each posts}}
+          <a class="con postCard" id="{{_id}}" href="map/{{_id}}" target="_blank">
+            <div class="sixteen-nine" id="{{_id}}">
+              <div class="dacontent">
+                <img class="hero" src="{{thumbnail}}" />
+              </div>
+            </div>
+            <div class="about">
+              <h3>{{title}}</h3>
+              <div class="author">
+                by {{username}}, <span title="{{date}}">{{newDate}}</span>
+              </div>
+              <div class="desc">
+                {{excerpt}}
+              </div>
+              <div class="bottom">
+                <span class="stat">
+                  <span class="fa fa-cloud-download"></span>
+                  <span class="number">{{downloads}}</span>
+                </span>
 
-</div>
-</div>
--->
+                <span class="stat">
+                  <span class="fa fa-comments"></span>
+                  <span class="number">{{comments}}</span>
+                </span>
 
-</aside>
-<div class="sort">
-  <span class="option active">
-    New
-  </span>
-  <span class="option">
-    Trending
-  </span>
-  <!-- not live until after MVP
-  <span class="option">
-  Featured
-</span>
--->
-<span class="option">
-  Top
-</span>
-</div>
-<div class="list">
 
-  <section class="feed">
-    {{#each posts}}
-    <a class="con postCard" id="{{_id}}" href="map/{{_id}}" target="_blank">
-      <div class="sixteen-nine" id="{{_id}}">
-        <div class="dacontent">
-          <img class="hero" src="{{thumbnail}}" />
-        </div>
+                <span class="stat">
+                  <span class="fa fa-eye"></span>
+                  <span class="number">{{views}}</span>
+                </span>
+                <span class="right">
+                  {{gameMode}}
+                </span>
+              </div>
+            </div>
+          </a>
+          {{/each}}
+          <div class="page">
+            <span class="fa fa-chevron-left" title="Back"></span>
+            <span class="curPage">{{curPage}}</span>
+            <span class="fa fa-chevron-right" title="Next"></span>
+          </div>
+        </section>
       </div>
-      <div class="about">
-        <h3>{{title}}</h3>
-        <div class="author">
-          by {{username}}, <span title="{{date}}">{{newDate}}</span>
-        </div>
-        <div class="desc">
-          {{excerpt}}
-        </div>
-        <div class="bottom">
-          <span class="stat">
-            <span class="fa fa-cloud-download"></span>
-            <span class="number">{{downloads}}</span>
-          </span>
-
-          <span class="stat">
-            <span class="fa fa-comments"></span>
-            <span class="number">{{comments}}</span>
-          </span>
-
-
-          <span class="stat">
-            <span class="fa fa-eye"></span>
-            <span class="number">{{views}}</span>
-          </span>
-          <span class="right">
-            {{gameMode}}
-          </span>
-        </div>
-      </div>
-    </a>
-    {{/each}}
-    <div class="page">
-      <span class="fa fa-chevron-left" title="Back"></span>
-      <span class="curPage">{{curPage}}</span>
-      <span class="fa fa-chevron-right" title="Next"></span>
-    </div>
+    </section>
   </section>
-</div>
-</section>
-</section>
 </template>

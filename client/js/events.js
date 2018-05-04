@@ -256,6 +256,21 @@ Template.main.events({
   },
   'click .goTos':()=>{
     appTracker.set('terms')
+  },
+  'click .sortHot':()=>{
+    sortBy.set('hot')
+    $('.sortHot').addClass('active')
+    $('.sortNew, .sortTop').removeClass('active')
+  },
+  'click .sortNew':()=>{
+    sortBy.set('new')
+    $('.sortNew').addClass('active')
+    $('.sortHot, .sortTop').removeClass('active')
+  },
+  'click .sortTop':()=>{
+    sortBy.set('top')
+    $('.sortTop').addClass('active')
+    $('.sortNew, .sortHot').removeClass('active')
   }
 });
 
