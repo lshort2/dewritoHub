@@ -46,6 +46,16 @@
             <span class="fa fa-flag"></span>
             <span class="label">Report</span>
           </span>
+          {{#if equals currentUser.username username}}
+          <span class="action right">
+            <span class="fa fa-trash"></span>
+            <span class="label">Delete</span>
+          </span>
+          <span class="action right">
+            <span class="fa fa-pencil"></span>
+            <span class="label">Edit</span>
+          </span>
+          {{/if}}
         </div>
       </div>
       <div class="viewCon">

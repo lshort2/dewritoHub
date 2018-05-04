@@ -34,14 +34,13 @@
     .list{
       width: calc(100% - 250px);
       float: left;
-      background: $foreColor;
       @include border-radius(3px);
 
-      .feed, .sort{
+      .sort{
         padding: 10px;
       }
       .con{
-        background: #1e2d2e;
+        background: $foreColor;
         display: inline-block;
         width: 100%;
         height: 170px;
