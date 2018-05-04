@@ -213,6 +213,12 @@
         margin-left: 10px;
       }
     }
+    .subComment{
+      @include border-radius(0px);
+      width: calc(100% - 10px);
+      border-left: 1px solid #4c4c4c;
+      padding-left: 10px;
+    }
     .commentMeat{
       margin-bottom: 5px;
       color: white;

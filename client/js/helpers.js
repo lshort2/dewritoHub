@@ -30,8 +30,45 @@ Template.content.helpers({
   },
   comment: function() {
     return comments.find({postId: currentPost.get()}, {sort: {date: -1}});
+  },
+  hasParent: function() {
+    return parentId.get() == this._id;
+  },
+  children: function() {
+    return comments.find({parentId: this._id }, {sort: {score: -1}});
   }
 });
+
+Template.commentItem.helpers({
+  post: function(){
+    return posts.findOne({_id: currentPost.get()})
+  },
+  comment: function() {
+    return comments.find({postId: currentPost.get()}, {sort: {date: -1}});
+  },
+  hasParent: function() {
+    return parentId.get() == this._id;
+  },
+  children: function() {
+    return comments.find({parentId: this._id }, {sort: {score: -1}});
+  }
+});
+
+Template.subComment.helpers({
+  post: function(){
+    return posts.findOne({_id: currentPost.get()})
+  },
+  comment: function() {
+    return comments.find({postId: currentPost.get()}, {sort: {date: -1}});
+  },
+  hasParent: function() {
+    return parentId.get() == this._id;
+  },
+  children: function() {
+    return comments.find({parentId: this._id }, {sort: {score: -1}});
+  }
+});
+
 
 // put global helpers here
 

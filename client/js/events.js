@@ -139,19 +139,6 @@ Template.content.events({
   'click .download': ()=>{
     Meteor.call('download', currentPost.get())
   },
-  'click .commentBttn':()=>{
-    var comment = {
-      postId: currentPost.get(),
-      meat: $('.commentText').val(),
-      date: new Date(),
-    };
-
-    if(comment.meat.length >= 5){
-      Meteor.call("createComment", comment);
-      //resets comment field
-      $('.commentText').val('')
-    }
-  },
   'click .postDelete': ()=>{
     $('.deleteModal').show()
   },
@@ -270,6 +257,37 @@ Template.content.events({
       }
     }
     setTimeout(checkVariable, 500);
+  }
+});
+
+Template.createComment.events({
+  'click .commentBttn':(e, tmpl)=>{
+    var comment = {
+      postId: currentPost.get(),
+      meat: tmpl.find(".commentText").value,
+      date: new Date(),
+    };
+
+    if(comment.meat.length >= 5){
+      if(parentId.get()) {
+        comment.parentId = parentId.get();
+        comment.postId1 = this.postId1;
+      }
+      else {
+        comment.postId1 = this._id;
+      }
+      Meteor.call("createComment", comment);
+      //resets comment field
+      $('.commentText').val('')
+      parentId.set(null);
+    }
+  }
+});
+
+Template.commentItem.events({
+  "click .reply": function(e){
+    console.log(e.currentTarget.id)
+    parentId.set(e.currentTarget.id);
   }
 });
 

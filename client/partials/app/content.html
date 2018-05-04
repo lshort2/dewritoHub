@@ -87,49 +87,12 @@
           <button class="button savePostEdit">Save</button>
         </div>
       </div>
-      <input class="commentText" placeholder="New Comment"/>
-      <button class="button commentBttn">Comment</button>
+      {{>createComment}}
       <div class="commentCon">
         {{#each comment}}
-        <div class="comment" id='{{_id}}'>
-          <div class="commentMeat" id={{_id}}meat>
-            {{meat}}
-          </div>
-          <input class="newComment" placeholder="New comment" id={{_id}}newCom value="{{meat}}">
-          <div class="commentTop">
-            By <a href="/user/{{username}}"  class="commentMaker">{{username}}</a>
-            {{#if edited}}
-            <span class="right" title="Last edit: {{edited}}">{{livestamp date}}*</span>
-            {{else}}
-            <span class="right" title="{{newDate}}">{{livestamp date}}</span>
-            {{/if}}
-            <div class="actions" id="{{_id}}act">
-              <span class="action">
-                <span class="fa fa-flag"></span>
-                <span class="label">Report</span>
-              </span>
-              {{#if equals currentUser.username username}}
-              <span class="action right comDelete" id="{{_id}}">
-                <span class="fa fa-trash"></span>
-                <span class="label">Delete</span>
-              </span>
-              <span class="action right comEdit" id="{{_id}}">
-                <span class="fa fa-pencil"></span>
-                <span class="label">Edit</span>
-              </span>
-              {{/if}}
-            </div>
-
-            <div class="action saveCom">
-              <div class="button goSaveCom" id="{{_id}}">
-                Save
-              </div>
-              <div class="button-light comEditCan" id="{{_id}}">
-                Cancel
-              </div>
-            </div>
-          </div>
-        </div>
+        {{#unless parentId}}
+        {{>commentItem}}
+        {{/unless}}
         {{/each}}
       </div>
     </div>
@@ -177,4 +140,117 @@
   Meteor.call('postExists', currentPost.get())
   </script>
   {{/with}}
+</template>
+
+<template name="createComment">
+  <input class="commentText" placeholder="New Comment"/>
+  <button class="button commentBttn">Comment</button>
+</template>
+
+<template name="commentItem">
+  <div class="comment" id='{{_id}}'>
+    <div class="commentMeat" id={{_id}}meat>
+      {{meat}}
+    </div>
+    <input class="newComment" placeholder="New comment" id={{_id}}newCom value="{{meat}}">
+    <div class="commentTop">
+      By <a href="/user/{{username}}"  class="commentMaker">{{username}}</a>
+      {{#if edited}}
+      <span class="right" title="Last edit: {{edited}}">{{livestamp date}}*</span>
+      {{else}}
+      <span class="right" title="{{newDate}}">{{livestamp date}}</span>
+      {{/if}}
+      <div class="actions" id="{{_id}}act">
+        <span class="action reply" id="{{_id}}">
+          <span class="fa fa-pencil" ></span>
+          <span class="label">Reply</span>
+        </span>
+        <span class="action">
+          <span class="fa fa-flag"></span>
+          <span class="label">Report</span>
+        </span>
+        {{#if equals currentUser.username username}}
+        <span class="action right comDelete" id="{{_id}}">
+          <span class="fa fa-trash"></span>
+          <span class="label">Delete</span>
+        </span>
+        <span class="action right comEdit" id="{{_id}}">
+          <span class="fa fa-pencil"></span>
+          <span class="label">Edit</span>
+        </span>
+        {{/if}}
+      </div>
+
+      <div class="action saveCom">
+        <div class="button goSaveCom" id="{{_id}}">
+          Save
+        </div>
+        <div class="button-light comEditCan" id="{{_id}}">
+          Cancel
+        </div>
+      </div>
+    </div>
+
+    {{#if hasParent}}
+    {{> createComment}}
+    {{/if}}
+
+    {{#each children}}
+    {{>subComment}}
+    {{/each}}
+  </div>
+</template>
+
+<template name="subComment">
+  <div class="subComment comment" id='{{_id}}'>
+    <div class="commentMeat" id={{_id}}meat>
+      {{meat}}
+    </div>
+    <input class="newComment" placeholder="New comment" id={{_id}}newCom value="{{meat}}">
+    <div class="commentTop">
+      By <a href="/user/{{username}}"  class="commentMaker">{{username}}</a>
+      {{#if edited}}
+      <span class="right" title="Last edit: {{edited}}">{{livestamp date}}*</span>
+      {{else}}
+      <span class="right" title="{{newDate}}">{{livestamp date}}</span>
+      {{/if}}
+      <div class="actions" id="{{_id}}act">
+        <span class="action  reply" id="{{_id}}">
+          <span class="fa fa-pencil" ></span>
+          <span class="label">Reply</span>
+        </span>
+        <span class="action">
+          <span class="fa fa-flag"></span>
+          <span class="label">Report</span>
+        </span>
+        {{#if equals currentUser.username username}}
+        <span class="action right comDelete" id="{{_id}}">
+          <span class="fa fa-trash"></span>
+          <span class="label">Delete</span>
+        </span>
+        <span class="action right comEdit" id="{{_id}}">
+          <span class="fa fa-pencil"></span>
+          <span class="label">Edit</span>
+        </span>
+        {{/if}}
+      </div>
+
+      <div class="action saveCom">
+        <div class="button goSaveCom" id="{{_id}}">
+          Save
+        </div>
+        <div class="button-light comEditCan" id="{{_id}}">
+          Cancel
+        </div>
+      </div>
+    </div>
+
+    {{#if hasParent}}
+    {{> createComment}}
+    {{/if}}
+
+    {{#each children}}
+    {{>subComment}}
+    {{/each}}
+  </div>
 </template>

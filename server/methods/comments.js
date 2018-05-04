@@ -16,6 +16,18 @@ Meteor.methods({
     }
     hourConvert()
     newDate = newDate[1] + ' ' + newDate[2] + ' ' + newDate[3] + ' ' + newDate[4]
+    var level = 0
+
+    if(comment.parentId != null || comment.parentId != "" ){
+      var id = comment.parentId;
+      comments.update({_id: id}, {$inc: {score: 1}});
+      try{
+        var lastLevel = comments.findOne({_id: id}).level
+        level = lastLevel + 1
+      }catch(e){}
+    }
+
+    comment.level = level
 
     comment.date = new Date();
     comment.newDate = newDate
