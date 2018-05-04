@@ -339,16 +339,19 @@ Template.main.events({
   },
   'click .sortHot':()=>{
     sortBy.set('hot')
+    reactPost.set(true)
     $('.sortHot').addClass('active')
     $('.sortNew, .sortTop').removeClass('active')
   },
   'click .sortNew':()=>{
     sortBy.set('new')
+    reactPost.set(true)
     $('.sortNew').addClass('active')
     $('.sortHot, .sortTop').removeClass('active')
   },
   'click .sortTop':()=>{
     sortBy.set('top')
+    reactPost.set(true)
     $('.sortTop').addClass('active')
     $('.sortNew, .sortHot').removeClass('active')
   }
