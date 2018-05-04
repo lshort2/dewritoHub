@@ -5,7 +5,9 @@
   padding-top: 80px;
   width: $appWidth;
   height: calc(100% - 80px);
-
+  a{
+    color: lightgray;
+  }
   .voted{
     color:white!important;
   }
@@ -149,6 +151,7 @@
     width: 250px;
     float: left;
     display: inline-block;
+    @include non-text-select();
     .download{
       margin-left: 10%;
       border: none;
@@ -161,6 +164,9 @@
       @include border-radius(4px);
       font-size: 14.4px;
       margin-bottom: 10px;
+    }
+    .mapMaker{
+      cursor: pointer;
     }
   }
   .catagory{

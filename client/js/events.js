@@ -31,6 +31,7 @@ function reset(){
     $( this ).removeClass('active')
   });
   currentGame.set('')
+  $(document).scrollTop(0)
 }
 
 Template.nav.events({
@@ -170,6 +171,18 @@ Template.content.events({
     }
     $('.upVote').removeClass('voted')
   },
+  'click .mapMaker':(e)=>{
+    e.preventDefault()
+    reset()
+    Meteor.pushState.pushState($(e.currentTarget).html(), 'user')
+    currentUser.set($(e.currentTarget).html())
+  },
+  'click .commentMaker':(e)=>{
+    e.preventDefault()
+    reset()
+    Meteor.pushState.pushState($(e.currentTarget).html(), 'user')
+    currentUser.set($(e.currentTarget).html())
+  }
 });
 
 Template.delete.events({

@@ -1,6 +1,7 @@
 <template name="main">
   <section class="main">
     <section class="featured">
+      {{#unless onUser}}
       <h1 class="header">Featured</h1>
 
       <!-- work later -->
@@ -14,7 +15,7 @@
               {{title}}
             </div>
             <span class="author">
-              By <span class="username">{{username}}</span>
+              By <a href="/users/{{username}}"  class="username">{{username}}</a>
             </span>
 
             <span class="gamemode">
@@ -25,6 +26,9 @@
       </a>
       {{/if}}
       {{/each}}
+      {{else}}
+      <h1 class="header">Maps by {{onUser}}</h1>
+      {{/unless}}
     </section>
 
     <section class="maps">

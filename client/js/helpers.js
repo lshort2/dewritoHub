@@ -51,6 +51,10 @@ Template.registerHelper("post", function(argument){
   if(currentPost.get()) return true;
 });
 
+Template.registerHelper("onUser", function(argument){
+  if(currentUser.get()) return currentUser.get();
+});
+
 Template.registerHelper("create", function(argument){
   if(appTracker.get() == 'create') return true;
 });

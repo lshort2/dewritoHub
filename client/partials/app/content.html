@@ -10,7 +10,7 @@
               {{title}}
             </div>
             <span class="author">
-              By <span class="username">{{username}}</span>
+              By <a href="/users/{{username}}" class="username mapMaker">{{username}}</a>
             </span>
 
             <span class="gamemode">
@@ -78,12 +78,12 @@
       <button class="button commentBttn">Comment</button>
       <div class="commentCon">
         {{#each comment}}
-        <div class="comment">
+        <div class="comment" id='{{_id}}'>
           <div class="commentMeat">
             {{meat}}
           </div>
           <div class="commentTop">
-            By {{username}}
+            By <a href="/users/{{username}}"  class="commentMaker">{{username}}</a>
             <span class="right" title="{{newDate}}">{{livestamp date}}</span>
           </div>
         </div>
@@ -99,7 +99,7 @@
         </div>
         <div class="con">
           <div class="type">
-            <span class="info">Author</span><span class="right">{{username}}</span>
+            <span class="info">Author</span><a href="/users/{{username}}"  class="right mapMaker">{{username}}</a>
           </div>
           <div class="type">
             <span class="info">Downloads</span><span class="right">{{downloads}}</span>

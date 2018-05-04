@@ -66,7 +66,6 @@ Meteor.pushState ={
       window.history.pushState("object or string", "Title", "/"+window.location.href.substring(window.location.href.lastIndexOf('/') + 1));
       history.pushState('', document.title, "map/"+target);
     }else if(type == 'user'){
-      reset()
       window.history.pushState("object or string", "Title", "/"+window.location.href.substring(window.location.href.lastIndexOf('/') + 1));
       history.pushState('', document.title, "user/"+target);
       currentUser.set(target.toLocaleLowerCase())
