@@ -19,3 +19,8 @@ Meteor.publish("posts", function(limit, currentUser, page, sortBy, post, game){
 Meteor.publish("catagory", function(argument){
   return catagory.find({})
 });
+
+Meteor.publish("comments", function(post){
+  console.log(post)
+  return comments.find({postId:post})
+});

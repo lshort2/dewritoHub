@@ -65,7 +65,7 @@ Meteor.methods({
       function compressPic(){
         Jimp.read(imageBuffer, function (err, image) {
           if (err) throw err;
-          image.resize(1280, Jimp.AUTO).quality(80).getBuffer(Jimp.MIME_JPEG, uploadImage);
+          image.resize(1280, Jimp.AUTO).quality(67).getBuffer(Jimp.MIME_JPEG, uploadImage);
         })
       }
 
@@ -97,5 +97,47 @@ Meteor.methods({
     posts.insert({_id: daId, username: username, title: title, description:description, link:link, thumbnail: thumbnail, date: new Date(), tagList:testTags, comments: 0, score: 1, excerpt: excerpt, editDate: 'Never', views: 0, newDate: newDate, imgCount: newDat.length, downloads: 0, gameMode:catagory2, minPlayer:minPlayer, maxPlayer:maxPlayer})
     userStuff.update({username: Meteor.user().username}, {$push: {createdPosts: daId}})
     catagory.update({name:catagory2}, {$inc:{count: 1}})
+  }
+});
+
+Meteor.methods({
+  createComment:function(comment){
+    comment.username = Meteor.user().username;
+    var daId = Random.id();
+    comment.saveid = daId
+
+    var newDate = new Date()
+    newDate = newDate.toString().split(' ')
+    function hourConvert(){
+      var timeString = newDate[4];
+      var H = +timeString.substr(0, 2);
+      var h = H % 12 || 12;
+      var ampm = (H < 12 || H === 24) ? "AM" : "PM";
+      timeString = h + timeString.substr(2, 3) + ampm;
+      newDate[4] = timeString
+    }
+    hourConvert()
+    newDate = newDate[1] + ' ' + newDate[2] + ' ' + newDate[3] + ' ' + newDate[4]
+
+    comment.date = new Date();
+    comment.newDate = newDate
+    comments.insert(comment);
+
+    posts.update({_id: comment.postId}, {$inc:{comments: 1}});
+  }
+});
+
+Meteor.methods({
+  deletePost:function(id){
+    var username = Meteor.user().username
+
+    if(posts.findOne({_id: id}).username == username){
+      var gameMode = posts.findOne({_id:id}).gameMode
+      catagory.update({name: gameMode}, {$inc: {count: -1}})
+      posts.remove({_id: id})
+      return 'deleted'
+    }else{
+      return 'fail'
+    }
   }
 });

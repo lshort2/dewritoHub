@@ -11,6 +11,9 @@ Template.main.helpers({
 Template.content.helpers({
   post: function(){
     return posts.findOne({_id: currentPost.get()})
+  },
+  comment: function() {
+    return comments.find({postId: currentPost.get()}, {sort: {date: -1}});
   }
 });
 

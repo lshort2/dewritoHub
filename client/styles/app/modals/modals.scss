@@ -8,7 +8,7 @@
   z-index: 7;
   display: none;
 }
-.register, .modal-block{
+.register, .modal-delete{
   width: 250px;
   position: absolute;
   margin: auto;
@@ -47,7 +47,7 @@
   }
 }
 
-.modal-block{
+.modal-delete{
   width: 300px;
   background: white;
   color: #373737;

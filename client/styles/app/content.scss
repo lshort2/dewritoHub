@@ -131,6 +131,7 @@
       padding: 20px;
       @include border-radius(3px);
       overflow: hidden;
+      margin-bottom: 10px;
       .commentTop, .right{
         color: #898989;
         font-size: 14.4px;

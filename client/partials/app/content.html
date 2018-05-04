@@ -47,7 +47,7 @@
             <span class="label">Report</span>
           </span>
           {{#if equals currentUser.username username}}
-          <span class="action right">
+          <span class="action right postDelete">
             <span class="fa fa-trash"></span>
             <span class="label">Delete</span>
           </span>
@@ -67,17 +67,17 @@
           {{tags}}
         </div>
       </div>
-      <input placeholder="New Comment"/>
+      <input class="commentText" placeholder="New Comment"/>
       <button class="button commentBttn">Comment</button>
       <div class="commentCon">
         {{#each comment}}
         <div class="comment">
           <div class="commentMeat">
-            Oh wow, that is fantastic! one of my favorte maps. 10/10!
+            {{meat}}
           </div>
           <div class="commentTop">
-            By finchMFG
-            <span class="right">7 hours ago</span>
+            By {{username}}
+            <span class="right" title="{{newDate}}">{{livestamp date}}</span>
           </div>
         </div>
         {{/each}}

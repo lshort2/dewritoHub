@@ -135,6 +135,34 @@ Template.content.events({
   },
   'click .download': ()=>{
     Meteor.call('download', currentPost.get())
+  },
+  'click .commentBttn':()=>{
+    var comment = {
+      postId: currentPost.get(),
+      meat: $('.commentText').val(),
+      date: new Date(),
+    };
+
+    if(comment.meat.length >= 5){
+      Meteor.call("createComment", comment);
+      //resets comment field
+      $('.commentText').val('')
+    }
+  },
+  'click .postDelete': ()=>{
+    $('.deleteModal').show()
+  }
+});
+
+Template.delete.events({
+  "click .deleteBttn": function(){
+    Meteor.call('deletePost', currentPost.get(), function(err, res){
+      if(res == 'deleted'){notiSet('success','Deleted post'); reset(); $('.deleteModal').hide()}
+      else{notiSet('fail', "You can't do that"); $('.deleteModal').hide()}
+    })
+  },
+  'click .deleteCancel':()=>{
+    $('.deleteModal').hide()
   }
 });
 Template.main.events({
