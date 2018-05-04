@@ -67,6 +67,14 @@ Template.registerHelper("settings", function(argument){
   if(appTracker.get() == 'settings') return true;
 });
 
+Template.registerHelper("privacy", function(argument){
+  if(appTracker.get() == 'privacy') return true;
+});
+
+Template.registerHelper("terms", function(argument){
+  if(appTracker.get() == 'terms') return true;
+});
+
 Template.registerHelper("curPage", function(argument){
   if(pageNum.get() == '') {return '1'}
   else{return pageNum.get()}

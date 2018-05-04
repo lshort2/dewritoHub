@@ -122,6 +122,23 @@
         height: auto;
       }
 
+      .legal{
+        color: #a8a8a8;
+        .link{
+          cursor: pointer;
+          @include non-text-select();
+          font-size: 13px;
+          transition: .2s;
+        }
+        .link:hover{
+          color: white;
+        }
+        .madeBy{
+          font-size: 13px;
+          text-align: center;
+          margin-top: 5px;
+        }
+      }
       .header{
         padding:0;
         margin: 0;

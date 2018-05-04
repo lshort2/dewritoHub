@@ -250,6 +250,12 @@ Template.main.events({
     event.preventDefault()
     Meteor.pushState.pushState(event.currentTarget.id, 'post')
     appTracker.set('post')
+  },
+  'click .goPrivy':()=>{
+    appTracker.set('privacy')
+  },
+  'click .goTos':()=>{
+    appTracker.set('terms')
   }
 });
 
