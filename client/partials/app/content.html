@@ -71,7 +71,9 @@
         </div>
 
         <div class="tags">
-          {{tags}}
+          {{#each tagList}}
+          <span class="tag" title="tag {{this}}">{{this}}</span>
+          {{/each}}
         </div>
       </div>
       <input class="commentText" placeholder="New Comment"/>

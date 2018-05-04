@@ -10,7 +10,7 @@ Meteor.methods({
 
     var daId = Random.id()
 
-    var tags = title.split(/\s/).reduce(function (previous, word) {
+    var tags = tags.split(/\s/).reduce(function (previous, word) {
       if (word.charAt(0) === "#") {
         previous.push(word.slice(1));
         word = word.replace(/#/g, "")

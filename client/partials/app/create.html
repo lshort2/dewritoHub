@@ -24,7 +24,29 @@
 
       <div class="section">
         <h4>Tags</h4>
-        <input placeholder="#Tags" class="mapTags" />
+        <input placeholder="#Tags" class="mapTags" id="mapTags" />
+        <script charset="utf-8">
+        var a = document.getElementById('mapTags');
+        a.addEventListener('keydown', addHash, false);
+
+        function addHash(event) {
+          if (event.keyCode === 32 && event.target.value.length) {
+            event.preventDefault();
+
+            var elem = event.target,
+            val = elem.value;
+
+            if (val.slice(-1) !== '#') {
+              elem.value += ' #';
+            }
+          } else if (!event.target.value.length) {
+            if (event.keyCode === 32) {
+              event.preventDefault();
+            }
+            event.target.value = '#';
+          }
+        }
+        </script>
       </div>
 
       <div class="section">

@@ -114,6 +114,17 @@
       font-family: $font-ops;
       text-align: justify;
     }
+    .tags{
+      padding: 10px 20px;
+      color: gray;
+      .tag{
+        cursor: pointer;
+        transition: .2s;
+      }
+      .tag:hover{
+        color: white;
+      }
+    }
     input{
       @include border-radius(2px);
       width: calc(100% - 14px);

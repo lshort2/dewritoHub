@@ -3,7 +3,13 @@
 theFeatured = new ReactiveVar(false);
 Template.main.helpers({
   posts: function(){
-    return posts.find({})
+    if(sortBy.get() == 'hot'){
+      return posts.find({}, {sort: {score: -1}})
+    }if(sortBy.get() == 'top'){
+      return posts.find({}, {sort: {newSate: -1}})
+    }if(sortBy.get() == 'new'){
+      return posts.find({}, {sort: {date: -1}})
+    }
   },
   'catagory': ()=>{
     return catagory.find({})
