@@ -139,7 +139,6 @@ Template.content.events({
   "click .thumb": function(e){
     var thumb = e.currentTarget.src
     thumb = thumb.replace('thumbs', 'images')
-    console.log(thumb)
     $('.hero').attr('src', thumb)
   },
   'click .download': ()=>{
@@ -396,9 +395,12 @@ Template.create.events({
       }
 
       if(canPost.length == newImages.length +2){
-        console.log(mapFile)
+        $('.mapPost').prop('disabled', true);
         Meteor.call('createPost', title, description, excerpt, tags, url, catagory, minPlayer, maxPlayer, newDat, mapFile, $('#mapFile')[0].files[0].name, function(err, res){
-          if(!err)notiSet('success', 'Posted successfully')
+          if(!err){notiSet('success', 'Posted successfully'); currentPost.set(res); appTracker.set('post')}
+          else{
+            $('.mapPost').prop('disabled', false);
+          }
         })
       }
     }
