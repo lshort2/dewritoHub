@@ -19,6 +19,40 @@
       background: $foreColor;
       @include border-radius(3px);
       overflow: hidden;
+      .edit{
+        padding: 20px;
+        display: none;
+        padding-top: 0px;
+        width: calc(100% - 40px);
+        textarea{
+          @include border-radius(2px);
+          width: calc(100% - 14px)!important;
+          border: none;
+          box-shadow: 2px 2px 8px -1px rgba(17, 17, 17, 0.129412);
+          padding: 7px 7px 7px 7px;
+          position: relative;
+          float: left;
+          height: 250px;
+          margin-top: 20px;
+        }
+        input{
+          margin-top: 0px;
+          margin-left: 0px;
+          color: white;
+        }
+        button{
+          color: white;
+        }
+        .button{
+          margin-bottom: 20px;
+        }
+        .label{
+          margin-top: 10px;
+          color: white;
+          float: left;
+          font-weight: 600;
+        }
+      }
     }
     .actView{
       margin-bottom: 10px;

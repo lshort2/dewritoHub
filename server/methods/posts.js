@@ -184,3 +184,22 @@ Meteor.methods({
     }catch(e){}
   }
 })
+
+Meteor.methods({
+  updatePost:function(id, desc, map, mapName){
+    function uploadMap(map){
+      // declare a regexp to match the non base64 first characters
+      var dataUrlRegExp = /data:([a-zA-Z0-9]+\/[a-zA-Z0-9-.+]+)\w+;base64,/;
+      // remove the "header" of the data URL via the regexp
+      var base64Data = map.replace(dataUrlRegExp, "");
+      // declare a binary buffer to hold decoded base64 data
+      var mapBuffer = new Buffer(base64Data, "base64");
+
+      Meteor.callB2.uploadMap(id, mapBuffer, id, mapName)
+    }
+    uploadMap(map)
+
+    posts.update({_id: id}, {$set: {description:desc, lastEdit: new Date()}})
+    return 'success'
+  }
+});

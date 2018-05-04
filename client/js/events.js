@@ -234,6 +234,35 @@ Template.content.events({
     $('#'+id+'act').show()
     $('.saveCom').removeClass('saveComVis')
     $('#'+id+'newCom').hide()
+  },
+  'click .postEdit':()=>{
+    $('.proper').hide()
+    $('.edit').show()
+  },
+  'click .savePostEdit': ()=>{
+    var newDesc = $('.newDesc').val()
+    var newMap = ''
+
+    function readFile(file, onLoadCallback){
+      var reader = new FileReader();
+      reader.onload = onLoadCallback;
+      reader.readAsDataURL(file);
+    }
+
+    readFile($('#newMapFile')[0].files[0], function(e){
+      newMap = e.target.result;
+    })
+
+    function checkVariable() {
+      if(newMap && newDesc){
+        console.log('hello')
+
+        Meteor.call('updatePost', currentPost.get(), newDesc, newMap, $('#newMapFile')[0].files[0].name, function(err,res){
+          if(!err)notiSet('success', 'Post updated'); location.reload()
+        })
+      }
+    }
+    setTimeout(checkVariable, 500);
   }
 });
 

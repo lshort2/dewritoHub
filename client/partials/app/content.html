@@ -58,7 +58,7 @@
             <span class="fa fa-trash"></span>
             <span class="label">Delete</span>
           </span>
-          <span class="action right">
+          <span class="action right postEdit">
             <span class="fa fa-pencil"></span>
             <span class="label">Edit</span>
           </span>
@@ -66,14 +66,25 @@
         </div>
       </div>
       <div class="viewCon">
-        <div class="description">
-          {{markdown description}}
-        </div>
+        <div class="proper">
+          <div class="description">
+            {{markdown description}}
+          </div>
 
-        <div class="tags">
-          {{#each tagList}}
-          <span class="tag" title="tag {{this}}">{{this}}</span>
-          {{/each}}
+          <div class="tags">
+            {{#each tagList}}
+            <span class="tag" title="tag {{this}}">{{this}}</span>
+            {{/each}}
+          </div>
+        </div>
+        <div class="edit">
+          <textarea value="{{description}}" class="newDesc"></textarea>
+          <div class="label">
+            Map File ( zip, rar, tar, tar.gz )
+          </div>
+          <input type="file" id="newMapFile" accept=".zip, .7zip, .rar, .tar, .tar.gz">
+          <button class="button-light">Cancel</button>
+          <button class="button savePostEdit">Save</button>
         </div>
       </div>
       <input class="commentText" placeholder="New Comment"/>
@@ -140,7 +151,11 @@
             <span class="info">Upload Time</span><span class="right" title="{{date}}">{{livestamp date}}</span>
           </div>
           <div class="type">
+            {{#if lastEdit}}
+            <span class="info">Update Time</span><span class="right">{{livestamp lastEdit}}</span>
+            {{else}}
             <span class="info">Update Time</span><span class="right">{{editDate}}</span>
+            {{/if}}
           </div>
           <div class="type">
             <span class="info">Game Mode</span><span class="right">{{gameMode}}</span>
