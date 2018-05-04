@@ -116,6 +116,7 @@
     }
     .tags{
       padding: 10px 20px;
+      padding-top: 0px;
       color: gray;
       .tag{
         cursor: pointer;
@@ -140,17 +141,42 @@
       width: 100%;
       margin-top: 20px;
       display: inline-block;
+      .saveCom{
+        display: none;
+        padding-bottom: 5px;
+      }
+      .saveComVis{
+        display: inline-block;
+        width: 100%;
+      }
+      .button-light{
+        color: white!important;
+      }
+      .newComment{
+        display: none;
+        margin-top: 0px;
+        margin-bottom: 10px;
+      }
     }
     .comment{
       background: $foreColor;
       width: calc(100% - 40px);
       padding: 20px;
+      padding-bottom: 0px;
       @include border-radius(3px);
       overflow: hidden;
       margin-bottom: 10px;
       .commentTop, .right{
         color: #898989;
         font-size: 14.4px;
+      }
+      .actions{
+        padding: 0px;
+        padding-top: 20px;
+      }
+      .right{
+        margin-right: 0px;
+        margin-left: 10px;
       }
     }
     .commentMeat{

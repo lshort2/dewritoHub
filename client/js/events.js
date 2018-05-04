@@ -212,15 +212,56 @@ Template.content.events({
         $('.addFave').addClass('voted')
       }
     })
+  },
+  'click .comDelete':(e)=>{
+    var id = e.currentTarget.id
+    $('.deleteModal').show()
+    $('.forType').html('comment')
+    $('.forType').attr('id', id)
+  },
+  'click .comEdit':(e)=>{
+    var id = e.currentTarget.id
+    $('#'+id+'meat').hide()
+    $('#'+id+'act').hide()
+    $('.saveCom').addClass('saveComVis')
+    $('#'+id+'newCom').show()
+  },
+  'click .goSaveCom':(e)=>{
+    var id = e.currentTarget.id
+    var meat = $('#'+id+'newCom').val()
+    Meteor.call('editComment', id, meat, function(err,res){
+      if(res == 'edit'){
+        notiSet('success','Comment edited')
+        $('#'+id+'meat').show()
+        $('#'+id+'act').show()
+        $('.saveCom').removeClass('saveComVis')
+        $('#'+id+'newCom').hide()
+      }
+      else{notiSet('fail', "You can't do that")}
+    })
+  },
+  'click .comEditCan':(e)=>{
+    var id = e.currentTarget.id
+    $('#'+id+'meat').show()
+    $('#'+id+'act').show()
+    $('.saveCom').removeClass('saveComVis')
+    $('#'+id+'newCom').hide()
   }
 });
 
 Template.delete.events({
   "click .deleteBttn": function(){
-    Meteor.call('deletePost', currentPost.get(), function(err, res){
-      if(res == 'deleted'){notiSet('success','Deleted post'); reset(); $('.deleteModal').hide()}
-      else{notiSet('fail', "You can't do that"); $('.deleteModal').hide()}
-    })
+    if($('.forType').html() == 'comment'){
+      Meteor.call('deleteComment', $('.forType').attr('id'), function(err, res){
+        if(res == 'deleted'){notiSet('success','Deleted comment'); $('.deleteModal').hide()}
+        else{notiSet('fail', "You can't do that"); $('.deleteModal').hide()}
+      })
+    }else{
+      Meteor.call('deletePost', currentPost.get(), function(err, res){
+        if(res == 'deleted'){notiSet('success','Deleted post'); reset(); $('.deleteModal').hide()}
+        else{notiSet('fail', "You can't do that"); $('.deleteModal').hide()}
+      })
+    }
   },
   'click .deleteCancel':()=>{
     $('.deleteModal').hide()

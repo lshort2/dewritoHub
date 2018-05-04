@@ -24,3 +24,33 @@ Meteor.methods({
     posts.update({_id: comment.postId}, {$inc:{comments: 1}});
   }
 });
+
+Meteor.methods({
+  deleteComment:function(id){
+    var username = Meteor.user().username
+
+    if(comments.findOne({_id: id}).username == username){
+      var post = comments.findOne({_id: id}).postId
+      posts.update({_id: post}, {$inc: {comments: -1}})
+      comments.remove({_id: id})
+      return 'deleted'
+    }else{
+      return 'fail'
+    }
+  }
+});
+
+
+Meteor.methods({
+  editComment:function(id, meat){
+    var username = Meteor.user().username
+
+    if(comments.findOne({_id: id}).username == username){
+      comments.update({_id: id}, {$set:{meat:meat}})
+      comments.update({_id: id}, {$set:{edited:new Date()}})
+      return 'edit'
+    }else{
+      return 'fail'
+    }
+  }
+});
