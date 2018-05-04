@@ -171,3 +171,7 @@ Meteor.publish("comments", function(post){
   console.log(post)
   return comments.find({postId:post})
 });
+
+Meteor.publish("userStuff", function(){
+  return userStuff.find({username:Meteor.user().username})
+});

@@ -27,7 +27,7 @@ Meteor.methods({
 
     }
     else{
-      userStuff.insert({username: username, createdPosts: [], createdComments: [], savedPosts: []});
+      userStuff.insert({username: username, createdPosts: [], createdComments: [], savedPosts: [], email: ''});
     }
   }
 })
@@ -61,5 +61,14 @@ Meteor.methods({
         }).run();
       }, Math.floor((Math.random() * 100000) + 10000));
     }
+  }
+})
+
+Meteor.methods({
+  updateUser: (email) =>{
+    var user = Meteor.user().username;
+
+    userStuff.update({username: user}, {$set: {email: email}})
+    return 'success'
   }
 })

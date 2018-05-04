@@ -35,6 +35,12 @@ Template.content.helpers({
 
 // put global helpers here
 
+Template.registerHelper("email", function(argument){
+  try{
+    return userStuff.findOne({username: Meteor.user().username}).email
+  }catch(e){}
+});
+
 Template.registerHelper("equals", function(a, b){
   return a === b;
 });

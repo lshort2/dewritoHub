@@ -1,3 +1,5 @@
+Meteor.subscribe('userStuff')
+
 Deps.autorun( function(){
   reactPost.set(true)
   Meteor.subscribe('posts', postLimit.get(), currentUser.get(), pageNum.get(), sortBy.get(), currentPost.get(), currentGame.get(), saved.get(), postSearch.get())
@@ -10,10 +12,6 @@ Deps.autorun(function(){
 Meteor.subscribe('catagory')
 
 Meteor.subscribe('featured')
-
-Deps.autorun( function(){
-  Meteor.subscribe('userStuff', currentUser.get())
-});
 
 //modal closer
 Meteor.modals ={
