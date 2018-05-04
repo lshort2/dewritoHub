@@ -196,6 +196,14 @@ Template.main.events({
       $( this ).removeClass('active')
     });
     $(e.currentTarget).addClass('active')
+  },
+  'click .sixteen-nine':(event)=>{
+    reset()
+    currentPost.set(event.currentTarget.id)
+    appTracker.set('post')
+    event.preventDefault()
+    Meteor.pushState.pushState(event.currentTarget.id, 'post')
+    appTracker.set('post')
   }
 });
 

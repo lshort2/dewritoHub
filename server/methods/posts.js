@@ -141,3 +141,18 @@ Meteor.methods({
     }
   }
 });
+
+Meteor.methods({
+  featured:function(){
+    var theFeatured = featured.find({}).map(function(e) { return e._id; })
+
+    var postInfo = [];
+
+    for(var i = 0; i < theFeatured.length; i++){
+      var thePost = posts.findOne({_id: theFeatured[i]})
+      postInfo[i] = {username: thePost.username, title:thePost.title, excerpt:thePost.excerpt, comments:thePost.comments, _id:thePost._id, date:thePost.date, newDate: thePost.newDate, gameMode: thePost.gameMode, thumbnail: thePost.thumbnail, views:thePost.views, downloads: thePost.downloads};
+    }
+    // just the 3 for now. We'll add a dedicated featured sort later.
+    return [postInfo[0], postInfo[1], [postInfo[3]]]
+  }
+});

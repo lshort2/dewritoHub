@@ -1,10 +1,14 @@
 Meteor.publish("posts", function(limit, currentUser, page, sortBy, post, game){
   var dl = limit || 5;
   var skip = 0
+  var featured = ['']
+  try{
+    featured = featured.find({}).map(function(e) { return e._id; })
+  }catch(e){}
+
   if(page){
     skip = page * 10 - 10;
   }
-  console.log(skip)
   if(post){
     return posts.find({_id: post})
   }else{

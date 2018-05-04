@@ -1,10 +1,20 @@
 // put template helpers here
+
+theFeatured = new ReactiveVar(false);
 Template.main.helpers({
   posts: function(){
     return posts.find({})
   },
   'catagory': ()=>{
     return catagory.find({})
+  },
+  featured: function() {
+    if (theFeatured.get() === false) {
+      Meteor.call('featured', function(err, res){
+        theFeatured.set(res)
+      })
+    }
+    return theFeatured.get();
   }
 });
 

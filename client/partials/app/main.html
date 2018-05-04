@@ -4,59 +4,27 @@
       <h1 class="header">Featured</h1>
 
       <!-- work later -->
-      <div class="sixteen-nine">
+      {{#each featured}}
+      {{#if title}}
+      <a href="/map/{{_id}}" class="sixteen-nine" id="{{_id}}">
         <div class="dacontent">
-          <img class="hero" src="https://f000.backblazeb2.com/file/dh-thumbs/3SL64SNBa2Ljmkqp9_0.jpg" />
+          <img class="hero" src="{{thumbnail}}" />
           <div class="banner">
             <div class="header">
-              Title test yaaaaa
+              {{title}}
             </div>
             <span class="author">
-              By <span class="username">finchMFG</span>
+              By <span class="username">{{username}}</span>
             </span>
 
             <span class="gamemode">
-              Slayer
+              {{gameMode}}
             </span>
           </div>
         </div>
-      </div>
-
-      <div class="sixteen-nine">
-        <div class="dacontent">
-          <img class="hero" src="https://f000.backblazeb2.com/file/dh-thumbs/3SL64SNBa2Ljmkqp9_0.jpg" />
-          <div class="banner">
-            <div class="header">
-              Title test yaaaaa
-            </div>
-            <span class="author">
-              By <span class="username">finchMFG</span>
-            </span>
-
-            <span class="gamemode">
-              Slayer
-            </span>
-          </div>
-        </div>
-      </div>
-
-      <div class="sixteen-nine">
-        <div class="dacontent">
-          <img class="hero" src="https://f000.backblazeb2.com/file/dh-thumbs/3SL64SNBa2Ljmkqp9_0.jpg" />
-          <div class="banner">
-            <div class="header">
-              Title test yaaaaa
-            </div>
-            <span class="author">
-              By <span class="username">finchMFG</span>
-            </span>
-
-            <span class="gamemode">
-              Slayer
-            </span>
-          </div>
-        </div>
-      </div>
+      </a>
+      {{/if}}
+      {{/each}}
     </section>
 
     <section class="maps">
@@ -117,9 +85,11 @@
         <span class="option">
           Trending
         </span>
+        <!-- not live until after MVP
         <span class="option">
           Featured
         </span>
+      -->
         <span class="option">
           Top
         </span>

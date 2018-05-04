@@ -9,6 +9,8 @@ Deps.autorun(function(){
 
 Meteor.subscribe('catagory')
 
+Meteor.subscribe('featured')
+
 Deps.autorun( function(){
   Meteor.subscribe('userStuff', currentUser.get())
 });
