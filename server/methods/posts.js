@@ -168,5 +168,17 @@ Meteor.methods({
       }
       computeScore(id)
     }catch(e){}
+  },
+  'savePost': (id)=>{
+    try{
+      var user = Meteor.user().username
+      if(userStuff.findOne({username: user, savedPosts: { $in: [id] } })){
+        userStuff.update({username: user}, {$pull: {savedPosts: id}})
+        return 'pulled'
+      }else{
+        userStuff.update({username: user}, {$push: {savedPosts: id}})
+        return 'saved'
+      }
+    }catch(e){}
   }
 })

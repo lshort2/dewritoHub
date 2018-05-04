@@ -27,7 +27,7 @@ Meteor.methods({
 
     }
     else{
-      userStuff.insert({username: username, createdPosts: [], createdComments: [],});
+      userStuff.insert({username: username, createdPosts: [], createdComments: [], savedPosts: []});
     }
   }
 })

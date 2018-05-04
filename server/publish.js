@@ -1,4 +1,4 @@
-Meteor.publish("posts", function(limit, currentUser, page, sortBy, post, game){
+Meteor.publish("posts", function(limit, currentUser, page, sortBy, post, game, save){
   var dl = limit || 5;
   var skip = 0
   var featured = ['']
@@ -20,10 +20,19 @@ Meteor.publish("posts", function(limit, currentUser, page, sortBy, post, game){
         return posts.find({_id: {$in: createdPosts}}, {sort: {date: -1}, skip: skip, limit: dl});
       }
     }else{
-      if(game){
-        return posts.find({gameMode: game}, {sort: {date: -1}, skip: skip, limit: dl});
+      if(save){
+        var savedPosts = userStuff.findOne({username: {$regex: new RegExp (Meteor.user().username, "i")}}).savedPosts
+        if(game){
+          return posts.find({_id: {$in: savedPosts}, gameMode: game}, {sort: {date: -1}, skip: skip, limit: dl});
+        }else{
+          return posts.find({_id: {$in: savedPosts}}, {sort: {date: -1}, skip: skip, limit: dl});
+        }
       }else{
-        return posts.find({}, {sort: {date: -1}, skip: skip, limit: dl});
+        if(game){
+          return posts.find({gameMode: game}, {sort: {date: -1}, skip: skip, limit: dl});
+        }else{
+          return posts.find({}, {sort: {date: -1}, skip: skip, limit: dl});
+        }
       }
     }
   }

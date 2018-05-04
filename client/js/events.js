@@ -26,6 +26,7 @@ function reset(){
   postSearch.set('')
   pageNum.set('')
   lastPage.set(0)
+  saved.set('')
 
   $('.gameSelect').each(function() {
     $( this ).removeClass('active')
@@ -55,6 +56,9 @@ Template.nav.events({
   'click .appSet': ()=>{
     reset()
     appTracker.set('settings')
+  },
+  'click .saved':()=>{
+    saved.set('go')
   }
 });
 
@@ -182,6 +186,17 @@ Template.content.events({
     reset()
     Meteor.pushState.pushState($(e.currentTarget).html(), 'user')
     currentUser.set($(e.currentTarget).html())
+  },
+  'click .addFave':(e)=>{
+    Meteor.call('savePost', e.currentTarget.id, function(err,res){
+      if(res == 'pulled'){
+        notiSet('fail', 'Pulled from Saved')
+        $('.addFave').removeClass('voted')
+      }if(res == 'saved'){
+        notiSet('success', "Saved post");
+        $('.addFave').addClass('voted')
+      }
+    })
   }
 });
 
