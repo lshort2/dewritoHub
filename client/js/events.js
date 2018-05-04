@@ -182,6 +182,8 @@ Template.create.events({
     var minPlayer = $('.minPlayer').val()
     var maxPlayer = $('.maxPlayer').val()
 
+    var mapFile = ''
+
     // TODO: ouch. Loop this shit.
     var maxImages = 5;
     var img = []
@@ -206,6 +208,10 @@ Template.create.events({
       }
     }
 
+    readFile($('#mapFile')[0].files[0], function(e){
+      mapFile = e.target.result;
+    })
+
     function readFile(file, onLoadCallback){
       var reader = new FileReader();
       reader.onload = onLoadCallback;
@@ -219,12 +225,14 @@ Template.create.events({
           newDat.push(imgDat[i]);
         }
       }
-      console.log(newDat)
       var canPost = [];
       for(var i = 0; i < newImages.length; i++){
         if(newImages[i] && newDat[i]){
           canPost[i] = 'true'
         }
+      }
+      if(mapFile){
+        canPost.push('true')
       }
       if(title && description && excerpt && minPlayer && maxPlayer){
         canPost.push('true')
@@ -239,9 +247,9 @@ Template.create.events({
         }
       }
 
-      if(canPost.length == newImages.length +1){
-        console.log('can post!!!')
-        Meteor.call('createPost', title, description, excerpt, tags, url, catagory, minPlayer, maxPlayer, newDat, function(err, res){
+      if(canPost.length == newImages.length +2){
+        console.log(mapFile)
+        Meteor.call('createPost', title, description, excerpt, tags, url, catagory, minPlayer, maxPlayer, newDat, mapFile, $('#mapFile')[0].files[0].name, function(err, res){
           if(!err)notiSet('success', 'Posted successfully')
         })
       }

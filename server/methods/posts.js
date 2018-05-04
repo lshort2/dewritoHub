@@ -4,7 +4,7 @@ Fiber = Npm.require('fibers');
 var fs = Npm.require('fs');
 
 Meteor.methods({
-  createPost:function(title, description, excerpt, tags, url, catagory2, minPlayer, maxPlayer, newDat){
+  createPost:function(title, description, excerpt, tags, url, catagory2, minPlayer, maxPlayer, newDat, map, mapName){
     var excerpt = excerpt.substring(0, 300);
     var title = title.substring(0, 300);
     var username = Meteor.user().username
@@ -79,6 +79,17 @@ Meteor.methods({
 
       extension = '.jpg'
     }
+    function uploadMap(map){
+      // declare a regexp to match the non base64 first characters
+      var dataUrlRegExp = /data:([a-zA-Z0-9]+\/[a-zA-Z0-9-.+]+)\w+;base64,/;
+      // remove the "header" of the data URL via the regexp
+      var base64Data = map.replace(dataUrlRegExp, "");
+      // declare a binary buffer to hold decoded base64 data
+      var mapBuffer = new Buffer(base64Data, "base64");
+
+      Meteor.callB2.uploadMap(daId, mapBuffer, daId, mapName)
+    }
+    uploadMap(map)
 
     var thumbnail = '/uploading.jpg'
     var link = '/uploading.jpg'

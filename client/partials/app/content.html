@@ -68,7 +68,9 @@
         </div>
       </div>
       <input placeholder="New Comment"/>
+      <button class="button commentBttn">Comment</button>
       <div class="commentCon">
+        {{#each comment}}
         <div class="comment">
           <div class="commentMeat">
             Oh wow, that is fantastic! one of my favorte maps. 10/10!
@@ -78,11 +80,12 @@
             <span class="right">7 hours ago</span>
           </div>
         </div>
+        {{/each}}
       </div>
     </div>
 
     <aside class="sidebar">
-      <button class="download">DOWNLOAD</button>
+      <a href="{{dlMap}}" class="button download">DOWNLOAD</a>
       <div class="catagory">
         <div class="con conBorder">
           <h5 class="header">MAP INFO</h5>

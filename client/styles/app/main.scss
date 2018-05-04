@@ -5,6 +5,8 @@
   padding-top: 80px;
   width: $appWidth;
   height: calc(100% - 80px);
+  display: table;
+  margin-bottom: 20px;
 
   .header{
     color: white;
