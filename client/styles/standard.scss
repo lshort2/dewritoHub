@@ -31,3 +31,112 @@ body{
   background: #408ced;
   border: none;
 }
+
+
+.drawers{
+  position: fixed;
+  height: 100%;
+  top: 0;
+  z-index: 0;
+  display: none;
+  .snap-drawer-left{
+    width: 300px;
+    height: 100%;
+  }
+}
+
+.superConMeMan{
+  height: 100%;
+}
+
+// mEdIa QuRiEs
+
+@media (min-width: 320px){
+  .mobileNav{
+    display: block;
+  }
+  .mobileStuff{
+    display: block;
+  }
+}
+
+@media (min-width: 750px){
+  .mobileNav{
+    display: none;
+  }
+  .mobileStuff{
+    display: none;
+  }
+}
+
+@media (max-width: 750px){
+  .sidebar{
+    display: none!important;
+  }
+  .list{
+    width: 100%!important;
+    .con{
+      height: auto!important;
+      padding-bottom: 30px;
+    }
+    .sixteen-nine{
+      display: none!important;
+    }
+    .bottom{
+      bottom: -10px!important;
+    }
+    .about{width: calc(100% - 40px)!important}
+  }
+  .deskNav{
+    display: none;
+  }
+  .content{
+    display: inline-block;
+    .view{
+      width: 100%!important;
+      .thumb{
+        height: 30px!important;
+        width: 48px!important;
+      }
+      .actions{
+        display: none;
+      }
+      .commentText, .commentBttn{
+        display: none!important;
+      }
+    }
+    .description{
+      h1, h2, h3, h4, h5, h6{
+        font-size: 19px;
+      }
+      p{
+        font-size: 14px;
+      }
+    }
+  }
+  .featured{
+    .sixteen-nine{
+      width: calc(100% - 20px)!important;
+      margin-bottom: 20px;
+    }
+  }
+  .main, .content{
+    width: calc(100% - 20px)!important;
+    margin-left: 10px!important;
+    margin-right: 0!important
+  }
+  .mount{
+    display: block!important;
+  }
+  .app{
+    display: block!important;
+    overflow: scroll;
+  }
+  .mainView{
+    display: inline-block;
+    width: 100%;
+  }
+  .topBar{
+    background: white;
+  }
+}

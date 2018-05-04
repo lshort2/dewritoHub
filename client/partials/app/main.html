@@ -3,6 +3,7 @@
     <section class="featured">
       {{#if home}}
       {{#unless saved}}
+      {{#unless onUser}}
       <h1 class="header">Featured</h1>
 
       <!-- work later -->
@@ -27,6 +28,7 @@
       </a>
       {{/if}}
       {{/each}}
+      {{/unless}}
       {{/unless}}
       {{/if}}
 
@@ -117,7 +119,11 @@
   <section class="feed">
     {{#each posts}}
     <a class="con postCard" id="{{_id}}" href="map/{{_id}}" target="_blank">
-      <img src="{{thumbnail}}" />
+      <div class="sixteen-nine">
+        <div class="dacontent">
+          <img class="hero" src="{{thumbnail}}" />
+        </div>
+      </div>
       <div class="about">
         <h3>{{title}}</h3>
         <div class="author">

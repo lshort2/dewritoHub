@@ -53,6 +53,10 @@
         overflow: hidden;
         cursor: pointer;
         @include non-text-select();
+        .sixteen-nine{
+          margin-left: 0;
+          margin-right: 0;
+        }
         img{
           width: 310px;
           height: 170px;
@@ -69,7 +73,7 @@
         .about{
           height: calc(100% - 40px);
           position: relative;
-          width: calc(100% - 350px);
+          width: calc(77% - 115px);
           padding: 20px;
           float: left;
         }
