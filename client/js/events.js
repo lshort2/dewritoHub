@@ -249,16 +249,28 @@ Template.content.events({
       reader.readAsDataURL(file);
     }
 
-    readFile($('#newMapFile')[0].files[0], function(e){
-      newMap = e.target.result;
-    })
+    if($('#newMapFile')[0].files[0]){
+      readFile($('#newMapFile')[0].files[0], function(e){
+        newMap = e.target.result;
+      })
+    }
 
     function checkVariable() {
       if(newMap && newDesc){
-        console.log('hello')
-
+        $('.savePostEdit').prop('disabled', true);
         Meteor.call('updatePost', currentPost.get(), newDesc, newMap, $('#newMapFile')[0].files[0].name, function(err,res){
-          if(!err)notiSet('success', 'Post updated'); location.reload()
+          if(res == 'success'){notiSet('success', 'Post updated'); location.reload()}else{
+            notiSet('fail', 'Somethings not right')
+            $('.savePostEdit').prop('disabled', false);
+          }
+        })
+      }else if(!$('#newMapFile')[0].files[0] && newDesc){
+        $('.savePostEdit').prop('disabled', true);
+        Meteor.call('updatePost', currentPost.get(), newDesc, function(err,res){
+          if(res == 'success'){notiSet('success', 'Post updated'); location.reload()}else{
+            notiSet('fail', 'Somethings not right')
+            $('.savePostEdit').prop('disabled', false);
+          }
         })
       }
     }

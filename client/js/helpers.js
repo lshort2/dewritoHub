@@ -4,11 +4,11 @@ theFeatured = new ReactiveVar(false);
 Template.main.helpers({
   posts: function(){
     if(sortBy.get() == 'hot'){
-      return posts.find({}, {sort: {score: -1}})
+      return posts.find({}, {sort: {score: -1}, reactive: reactPost.get()})
     }if(sortBy.get() == 'top'){
-      return posts.find({}, {sort: {newSate: -1}})
+      return posts.find({}, {sort: {newSate: -1}, reactive: reactPost.get()})
     }if(sortBy.get() == 'new'){
-      return posts.find({}, {sort: {date: -1}})
+      return posts.find({}, {sort: {date: -1}, reactive: reactPost.get()})
     }
   },
   'catagory': ()=>{
@@ -103,13 +103,11 @@ Template.registerHelper('markdown', function (text, options) {
     , pedantic: false
     , sanitize: true
     , smartLists: true
-    , smartypants: false
+    , smartypants: true
   });
   text = kramed(text);
-  //text = text.replace(/\n{1,9}/g, '<br>');
   text = text.replace(/\\n/g, '');
 
-  //text = text.replace(/(?:\\[rn])+/g, '<br><br>');
   text = text.replace(/\\/g, '');
   text = text.slice(0, -5);
 

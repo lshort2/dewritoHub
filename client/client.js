@@ -106,3 +106,26 @@ window.onload = function () {
     };
   }
 }
+
+Template.main.onRendered(function(){
+  // select the target node
+  var target = document.querySelector('#feed');
+  // create an observer instance
+  try{
+    var observer = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+        setTimeout(function () {
+          reactPost.set(false)
+        }, 1500);
+      });
+    });
+
+    // configuration of the observer:
+    var config = { attributes: true, childList: true, characterData: true }
+
+    // pass in the target node, as well as the observer options
+    observer.observe(target, config);
+  }catch(e){
+    console.log('cant observe feed')
+  }
+});
