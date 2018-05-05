@@ -64,10 +64,12 @@ Template.nav.events({
   'keyup .search': (event)=>{
     if(event.keyCode == 13){
       var searchVal = $('.search').val()
+      Meteor.pushState.pushState('home')
+      reset()
       postSearch.set(searchVal)
     }
     //or when the search is empty
-    else if($(target).val().length == 0){
+    else if($('.search').val().length == 0){
       postSearch.set($('.search').val())
     }
   }
