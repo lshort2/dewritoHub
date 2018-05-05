@@ -1,5 +1,16 @@
 //first time init
-var catagoriesList = ['Slayer','Oddball','King of the Hill','Capture the Flag','Assault', 'Territories', 'Juggernaut', 'Infection', 'Other', 'Mini game', 'Aesthetic', 'Puzzle', 'VIP', 'Race', 'Prefabs']
+var catagoriesList = [
+  'Remake',
+  'Infection',
+  'Core',
+  'Puzzle',
+  'Minigame',
+  'Aesthetic',
+  'Race',
+  'VIP',
+  'Prefabs',
+  'Other'
+]
 
 for(var i = 0; i < catagoriesList.length; i++){
   if(catagory.findOne({name: catagoriesList[i]})){
