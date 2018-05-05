@@ -59,6 +59,7 @@ Template.nav.events({
   },
   'click .saved':()=>{
     saved.set('go')
+    reactPost.set(true)
   },
   'keyup .search': (event)=>{
     if(event.keyCode == 13){
