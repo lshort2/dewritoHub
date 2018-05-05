@@ -20,6 +20,15 @@ for(var i = 0; i < catagoriesList.length; i++){
   }
 }
 
+// convert all existing Mini game to Minigame -- remove once fixed.
+try{
+  var miniGameFix = posts.find({gameMode: 'Mini game'}).map(function(e) { return e._id; })
+  for(var i = 0; i < miniGameFix.length; i++){
+    posts.update({_id: miniGameFix[i]}, {$set:{gameMode: 'Minigame'}})
+    catagory.update({name: 'Minigame'}, {$inc:{count: 1}})
+  }
+}catch(e){}
+
 // the signup method
 Meteor.methods({
   'signup': (username, password) =>{
