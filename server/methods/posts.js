@@ -127,7 +127,14 @@ Meteor.methods({
       postInfo[i] = {username: thePost.username, title:thePost.title, excerpt:thePost.excerpt, comments:thePost.comments, _id:thePost._id, date:thePost.date, newDate: thePost.newDate, gameMode: thePost.gameMode, thumbnail: thePost.thumbnail, views:thePost.views, downloads: thePost.downloads};
     }
     // just the 3 for now. We'll add a dedicated featured sort later.
-    return [postInfo[0], postInfo[1], [postInfo[3]]]
+    console.log(theFeatured.length)
+    if(theFeatured.length >= 3){
+      return [postInfo[theFeatured.length - 1], postInfo[theFeatured.length - 2], postInfo[theFeatured.length - 3]]
+    }else if(theFeatured.length == 2){
+      return [postInfo[1], postInfo[0]]
+    }else{
+      return [postInfo[0], postInfo[1], postInfo[2]]
+    }
   }
 });
 
