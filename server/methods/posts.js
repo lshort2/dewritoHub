@@ -24,7 +24,7 @@ Meteor.methods({
     var testTags = [];
     for(i = 0; i < tags.length; i++){
       testTags[i] = tags[i].replace(/#/g, "");
-      testTags[i] = '#'+testTags[i]
+      testTags[i] = '#'+testTags[i].toLocaleLowerCase()
     }
 
     var newDate = new Date()

@@ -55,7 +55,7 @@ Meteor.publish("posts", function(limit, currentUser, page, sortBy, post, game, s
             tags = e
             tags = tags.split(' ')
             for (var i = 0; i < tags.length; i++){
-              tags[i] = '#'+tags[i]
+              tags[i] = '#'+tags[i].toLocaleLowerCase()
             }
           })
           safeSearch = ".*" + safeSearch + ".*";
@@ -74,7 +74,7 @@ Meteor.publish("posts", function(limit, currentUser, page, sortBy, post, game, s
             tags = e
             tags = tags.split(' ')
             for (var i = 0; i < tags.length; i++){
-              tags[i] = '#'+tags[i]
+              tags[i] = '#'+tags[i].toLocaleLowerCase()
             }
           })
           safeSearch = safeSearch.toLocaleLowerCase()
@@ -111,7 +111,7 @@ Meteor.publish("posts", function(limit, currentUser, page, sortBy, post, game, s
             tags = e
             tags = tags.split(' ')
             for (var i = 0; i < tags.length; i++){
-              tags[i] = '#'+tags[i]
+              tags[i] = '#'+tags[i].toLocaleLowerCase()
             }
           })
           return posts.find({tagList: { $in: tags }}, {sort: {score: -1}, skip: skip, limit: dl})

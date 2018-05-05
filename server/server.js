@@ -29,6 +29,21 @@ try{
   }
 }catch(e){}
 
+//convert all tags to lowercase -- remove once fixed.
+try{
+    var post = posts.find({}).map(function(e) { return e._id; })
+    for(var i = 0; i < post.length; i++){
+      var tags = posts.findOne({_id: post[i]}).tagList
+      var newTags = []
+
+      for(var x = 0; x < tags.length; x++){
+        newTags[x] = tags[x].toLocaleLowerCase()
+      }
+      posts.update({_id: post[i]}, {$set:{tagList: newTags}})
+    }
+}catch(e){}
+
+
 // the signup method
 Meteor.methods({
   'signup': (username, password) =>{
