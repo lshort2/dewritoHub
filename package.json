@@ -9,9 +9,11 @@
     "backblaze-b2": "^1.0.4",
     "circular-json": "^0.5.3",
     "decay": "^1.0.12",
+    "follow-redirects": "^1.4.1",
     "imagemin": "^5.3.1",
     "imagemin-pngquant": "^5.1.0",
     "jimp": "^0.2.28",
-    "meteor-node-stubs": "^0.3.2"
+    "meteor-node-stubs": "^0.3.2",
+    "recursive-readdir": "^2.2.2"
   }
 }

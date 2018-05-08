@@ -72,6 +72,10 @@ Template.nav.events({
     else if($('.search').val().length == 0){
       postSearch.set($('.search').val())
     }
+  },
+  'click .goProfile':()=>{
+    reset()
+    Meteor.pushState.pushState(Meteor.user().username, 'user')
   }
 });
 
