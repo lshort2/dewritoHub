@@ -52,3 +52,4 @@ staringatlights:fast-render
 meteorhacks:ssr
 meteorhacks:inject-initial
 dynamic-import@0.3.0
+meteorhacks:picker
