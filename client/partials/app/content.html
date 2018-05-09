@@ -78,13 +78,37 @@
           </div>
         </div>
         <div class="edit">
+          <div class="label">
+            Map Excerpt ( in feed )
+          </div>
+          <textarea value="{{excerpt}}" class="newExcerpt"></textarea>
+          <div class="label">
+            Map Description
+          </div>
           <textarea value="{{description}}" class="newDesc"></textarea>
           <div class="label">
-            Map File ( zip, rar, tar, tar.gz )
+            Map File ( zip, tar, tar.gz ) RAR are broken.
           </div>
-          <input type="file" id="newMapFile" accept=".zip, .7zip, .rar, .tar, .tar.gz">
+          <input type="file" id="newMapFile" accept=".zip, .7zip, .tar, .tar.gz">
+          <div class="selectCon">
+            <select class="newMapCatagory">
+              <option value="Remake">Remake</option>
+              <option value="Infection">Infection</option>
+              <option value="Core">Core</option>
+              <option value="Puzzle">Puzzle</option>
+              <option value="Minigame">Minigame</option>
+              <option value="Aesthetic">Aesthetic</option>
+              <option value="Race">Race</option>
+              <option value="VIP">VIP</option>
+              <option value="Prefabs">Prefabs</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
           <button class="button-light">Cancel</button>
           <button class="button savePostEdit">Save</button>
+          <script charset="utf-8">
+            $('.newMapCatagory').val('{{gameMode}}')
+          </script>
         </div>
       </div>
       {{>createComment}}

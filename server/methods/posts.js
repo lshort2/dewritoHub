@@ -193,7 +193,7 @@ Meteor.methods({
 })
 
 Meteor.methods({
-  updatePost:function(id, desc, map, mapName){
+  updatePost:function(id, desc, map, mapName, mapCata, mapExcerpt){
     var username = Meteor.user().username;
 
     if(posts.findOne({_id: id}).username == username){
@@ -207,11 +207,15 @@ Meteor.methods({
 
         Meteor.callB2.uploadMap(id, mapBuffer, id, mapName)
       }
-      if(map){
+      if(map && mapName != 'null'){
         uploadMap(map)
       }
 
-      posts.update({_id: id}, {$set: {description:desc, lastEdit: new Date()}})
+      // pull the count from the old map catagory and push it to the new one
+      var oldCata = posts.findOne({_id: id}).gameMode
+      catagory.update({name: oldCata}, {$inc: {count: -1}})
+      catagory.update({name: mapCata}, {$inc: {count: 1}})
+      posts.update({_id: id}, {$set: {description:desc, lastEdit: new Date(), gameMode: mapCata, excerpt: mapExcerpt}})
       return 'success'
     }else{
       return 'fail'

@@ -231,6 +231,8 @@ Template.content.events({
   'click .savePostEdit': ()=>{
     var newDesc = $('.newDesc').val()
     var newMap = ''
+    var newMapExcerpt = $('.newExcerpt').val()
+    var newMapCata = $('.newMapCatagory').val()
 
     function readFile(file, onLoadCallback){
       var reader = new FileReader();
@@ -245,17 +247,17 @@ Template.content.events({
     }
 
     function checkVariable() {
-      if(newMap && newDesc){
+      if(newMap && newDesc && newMapCata && newMapExcerpt){
         $('.savePostEdit').prop('disabled', true);
-        Meteor.call('updatePost', currentPost.get(), newDesc, newMap, $('#newMapFile')[0].files[0].name, function(err,res){
+        Meteor.call('updatePost', currentPost.get(), newDesc, newMap, $('#newMapFile')[0].files[0].name, newMapCata, newMapExcerpt, function(err,res){
           if(res == 'success'){notiSet('success', 'Post updated'); location.reload()}else{
             notiSet('fail', 'Somethings not right')
             $('.savePostEdit').prop('disabled', false);
           }
         })
-      }else if(!$('#newMapFile')[0].files[0] && newDesc){
+      }else if(!$('#newMapFile')[0].files[0] && newDesc && newMapCata && newMapExcerpt){
         $('.savePostEdit').prop('disabled', true);
-        Meteor.call('updatePost', currentPost.get(), newDesc, function(err,res){
+        Meteor.call('updatePost', currentPost.get(), newDesc, newMap, 'null', newMapCata, newMapExcerpt, function(err,res){
           if(res == 'success'){notiSet('success', 'Post updated'); location.reload()}else{
             notiSet('fail', 'Somethings not right')
             $('.savePostEdit').prop('disabled', false);

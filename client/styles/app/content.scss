@@ -33,7 +33,27 @@
           position: relative;
           float: left;
           height: 250px;
-          margin-top: 20px;
+          margin-top: 10px;
+        }
+        .newExcerpt{
+          height: 150px;
+        }
+        select{
+          @include border-radius(2px);
+          width: calc(100% - 14px);
+          max-width: 360px;
+          border: none;
+          box-shadow: 2px 2px 8px -1px rgba(17, 17, 17, 0.129412);
+          padding: 7px 7px 7px 7px;
+          height: auto;
+          background: white;
+          position: relative;
+          float: left;
+          margin-top: 5px;
+        }
+        .selectCon{
+          display: inline-block;
+          width: 100%;
         }
         input{
           margin-top: 0px;
