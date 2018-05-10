@@ -93,7 +93,18 @@ Meteor.methods({
     var thumbnail = '/uploading.jpg'
     var link = '/uploading.jpg'
 
-    posts.insert({_id: daId, username: username, title: title, description:description, link:link, thumbnail: thumbnail, date: new Date(), tagList:testTags, comments: 0, score: 1, excerpt: excerpt, editDate: 'Never', views: 0, newDate: newDate, imgCount: newDat.length, downloads: 0, newScore: 0, gameMode:catagory2, minPlayer:minPlayer, maxPlayer:maxPlayer, upUsers:[username], downUsers:[]})
+    try{
+      var url = url
+      if(!url.includes('youtube.com/watch?v=')){
+        url = ''
+      }else{
+        var ytThumb = url.split('=')[1];
+        ytThumb = 'http://img.youtube.com/vi/'+ytThumb+'/mqdefault.jpg'
+        url = url.replace("watch?v=","embed/");
+      }
+    }catch(e){}
+
+    posts.insert({_id: daId, username: username, title: title, description:description, link:link, thumbnail: thumbnail, date: new Date(), tagList:testTags, comments: 0, score: 1, excerpt: excerpt, editDate: 'Never', views: 0, newDate: newDate, imgCount: newDat.length, downloads: 0, newScore: 0, gameMode:catagory2, minPlayer:minPlayer, maxPlayer:maxPlayer, upUsers:[username], downUsers:[], video:url, ytThumb: ytThumb})
     userStuff.update({username: Meteor.user().username}, {$push: {createdPosts: daId}})
     catagory.update({name:catagory2}, {$inc:{count: 1}})
 
@@ -193,7 +204,7 @@ Meteor.methods({
 })
 
 Meteor.methods({
-  updatePost:function(id, desc, map, mapName, mapCata, mapExcerpt){
+  updatePost:function(id, desc, map, mapName, mapCata, mapExcerpt, newYoutube){
     var username = Meteor.user().username;
 
     if(posts.findOne({_id: id}).username == username){
@@ -211,11 +222,22 @@ Meteor.methods({
         uploadMap(map)
       }
 
+      try{
+        var url = newYoutube
+        if(!url.includes('youtube.com/watch?v=')){
+          url = ''
+        }else{
+          var ytThumb = url.split('=')[1];
+          ytThumb = 'http://img.youtube.com/vi/'+ytThumb+'/mqdefault.jpg'
+          url = url.replace("watch?v=","embed/");
+        }
+      }catch(e){}
+
       // pull the count from the old map catagory and push it to the new one
       var oldCata = posts.findOne({_id: id}).gameMode
       catagory.update({name: oldCata}, {$inc: {count: -1}})
       catagory.update({name: mapCata}, {$inc: {count: 1}})
-      posts.update({_id: id}, {$set: {description:desc, lastEdit: new Date(), gameMode: mapCata, excerpt: mapExcerpt}})
+      posts.update({_id: id}, {$set: {description:desc, lastEdit: new Date(), gameMode: mapCata, excerpt: mapExcerpt, video:url, ytThumb: ytThumb}})
       return 'success'
     }else{
       return 'fail'

@@ -141,7 +141,13 @@ Template.content.events({
   "click .thumb": function(e){
     var thumb = e.currentTarget.src
     thumb = thumb.replace('thumbs', 'images')
-    $('.hero').attr('src', thumb)
+    $('.imgHero').attr('src', thumb)
+    $('.vidHero').hide()
+    $('.imgHero').show()
+  },
+  'click .ytThumb':()=>{
+    $('.imgHero').hide()
+    $('.vidHero').show()
   },
   'click .download': ()=>{
     Meteor.call('download', currentPost.get())
@@ -233,6 +239,7 @@ Template.content.events({
     var newMap = ''
     var newMapExcerpt = $('.newExcerpt').val()
     var newMapCata = $('.newMapCatagory').val()
+    var newYoutube = $('.newYoutube').val()
 
     function readFile(file, onLoadCallback){
       var reader = new FileReader();
@@ -249,7 +256,7 @@ Template.content.events({
     function checkVariable() {
       if(newMap && newDesc && newMapCata && newMapExcerpt){
         $('.savePostEdit').prop('disabled', true);
-        Meteor.call('updatePost', currentPost.get(), newDesc, newMap, $('#newMapFile')[0].files[0].name, newMapCata, newMapExcerpt, function(err,res){
+        Meteor.call('updatePost', currentPost.get(), newDesc, newMap, $('#newMapFile')[0].files[0].name, newMapCata, newMapExcerpt, newYoutube, function(err,res){
           if(res == 'success'){notiSet('success', 'Post updated'); location.reload()}else{
             notiSet('fail', 'Somethings not right')
             $('.savePostEdit').prop('disabled', false);
@@ -257,7 +264,7 @@ Template.content.events({
         })
       }else if(!$('#newMapFile')[0].files[0] && newDesc && newMapCata && newMapExcerpt){
         $('.savePostEdit').prop('disabled', true);
-        Meteor.call('updatePost', currentPost.get(), newDesc, newMap, 'null', newMapCata, newMapExcerpt, function(err,res){
+        Meteor.call('updatePost', currentPost.get(), newDesc, newMap, 'null', newMapCata, newMapExcerpt, newYoutube,function(err,res){
           if(res == 'success'){notiSet('success', 'Post updated'); location.reload()}else{
             notiSet('fail', 'Somethings not right')
             $('.savePostEdit').prop('disabled', false);

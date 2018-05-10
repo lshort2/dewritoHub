@@ -4,7 +4,8 @@
     <div class="view">
       <div class="sixteen-nine">
         <div class="dacontent">
-          <img class="hero" src="{{link}}" />
+          <img class="hero imgHero" src="{{link}}" />
+          <iframe class="hero vidHero" src="{{video}}" width="100%" height="100%"></iframe>
           <div class="banner">
             <div class="header">
               {{title}}
@@ -20,6 +21,9 @@
         </div>
       </div>
       <div class="thumbs" id="{{_id}}thumb">
+        {{#if video}}
+        <img class="thumb ytThumb" src="{{ytThumb}}"/>
+        {{/if}}
       </div>
       <script>
       var count = parseInt({{imgCount}})
@@ -87,6 +91,10 @@
           </div>
           <textarea value="{{description}}" class="newDesc"></textarea>
           <div class="label">
+            YouTube URL
+          </div>
+          <input class="newYoutube" placeholder="Link" value="{{video}}">
+          <div class="label">
             Map File ( zip, tar, tar.gz ) RAR are broken.
           </div>
           <input type="file" id="newMapFile" accept=".zip, .7zip, .tar, .tar.gz">
@@ -107,7 +115,7 @@
           <button class="button-light">Cancel</button>
           <button class="button savePostEdit">Save</button>
           <script charset="utf-8">
-            $('.newMapCatagory').val('{{gameMode}}')
+          $('.newMapCatagory').val('{{gameMode}}')
           </script>
         </div>
       </div>
@@ -162,6 +170,11 @@
   </div>
   <script>
   Meteor.call('postExists', currentPost.get())
+
+  if('{{video}}'){
+    $('.imgHero').hide()
+    $('.vidHero').show()
+  }
   </script>
   {{/with}}
 </template>
