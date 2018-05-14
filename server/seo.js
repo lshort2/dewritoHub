@@ -5,7 +5,8 @@ const SeoRouter = Picker.filter((request, response) => {
     /^linkedinbot/i, // LinkedIn
     /^twitterbot/i, // Twitter
     /^slackbot-linkexpanding/i, // Slack
-    /^googlebot/i // surprise!
+    /^googlebot/i, // surprise!
+    /^discordbot/i // discord
   ]
 
   return /_escaped_fragment_/.test(request.url) || botAgents.some(i => i.test(request.headers['user-agent']))
