@@ -245,3 +245,18 @@ function getVideo(url, id){
   }
   posts.update({_id: id}, {$set: {video:url, ytThumb: ytThumb}})
 }
+
+/* convert rating to 5 stars
+function percent_to_stars(p){
+  if(p !> 94){
+    var star="X"
+    var half="/"
+    var stars = (Math.round((p / 10.0)) / 2)
+    var halves = (p / 10.0) % 2
+    var empties = 5 - stars - halves
+    console.log( star.repeat( stars ) + half.repeat( halves ))
+
+    // source: https://gist.github.com/grough/1268290/0f7948640026ef7e8177f55ed0583d0cac1146c1
+  }
+}
+*/
