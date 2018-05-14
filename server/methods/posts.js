@@ -94,14 +94,7 @@ Meteor.methods({
     var link = '/uploading.jpg'
 
     try{
-      var url = url
-      if(!url.includes('youtube.com/watch?v=')){
-        url = ''
-      }else{
-        var ytThumb = url.split('=')[1];
-        ytThumb = 'http://img.youtube.com/vi/'+ytThumb+'/mqdefault.jpg'
-        url = url.replace("watch?v=","embed/");
-      }
+      getVideo(url, daId)
     }catch(e){}
 
     posts.insert({_id: daId, username: username, title: title, description:description, link:link, thumbnail: thumbnail, date: new Date(), tagList:testTags, comments: 0, score: 1, excerpt: excerpt, editDate: 'Never', views: 0, newDate: newDate, imgCount: newDat.length, downloads: 0, newScore: 0, gameMode:catagory2, minPlayer:minPlayer, maxPlayer:maxPlayer, upUsers:[username], downUsers:[], video:url, ytThumb: ytThumb})
@@ -130,7 +123,6 @@ Meteor.methods({
 Meteor.methods({
   featured:function(){
     var theFeatured = featured.find({}).map(function(e) { return e._id; })
-    console.log(theFeatured)
     var postInfo = [];
 
     for(var i = 0; i < theFeatured.length; i++){
@@ -138,7 +130,6 @@ Meteor.methods({
       postInfo[i] = {username: thePost.username, title:thePost.title, excerpt:thePost.excerpt, comments:thePost.comments, _id:thePost._id, date:thePost.date, newDate: thePost.newDate, gameMode: thePost.gameMode, thumbnail: thePost.thumbnail, views:thePost.views, downloads: thePost.downloads};
     }
     // just the 3 for now. We'll add a dedicated featured sort later.
-    console.log(theFeatured.length)
     if(theFeatured.length >= 3){
       return [postInfo[theFeatured.length - 1], postInfo[theFeatured.length - 2], postInfo[theFeatured.length - 3]]
     }else if(theFeatured.length == 2){
@@ -223,24 +214,34 @@ Meteor.methods({
       }
 
       try{
-        var url = newYoutube
-        if(!url.includes('youtube.com/watch?v=')){
-          url = ''
-        }else{
-          var ytThumb = url.split('=')[1];
-          ytThumb = 'http://img.youtube.com/vi/'+ytThumb+'/mqdefault.jpg'
-          url = url.replace("watch?v=","embed/");
-        }
+        getVideo(newYoutube, id)
       }catch(e){}
 
       // pull the count from the old map catagory and push it to the new one
       var oldCata = posts.findOne({_id: id}).gameMode
       catagory.update({name: oldCata}, {$inc: {count: -1}})
       catagory.update({name: mapCata}, {$inc: {count: 1}})
-      posts.update({_id: id}, {$set: {description:desc, lastEdit: new Date(), gameMode: mapCata, excerpt: mapExcerpt, video:url, ytThumb: ytThumb}})
+      posts.update({_id: id}, {$set: {description:desc, lastEdit: new Date(), gameMode: mapCata, excerpt: mapExcerpt}})
       return 'success'
     }else{
       return 'fail'
     }
   }
 });
+
+function getVideo(url, id){
+  console.log(url)
+  if(!url.includes('youtube.com/watch?v=') && !url.includes('youtu.be/')){
+    url = ''
+  }else{
+    if(url.includes('youtu.be/')){
+      url = url.replace('youtu.be/', 'youtube.com/watch?v=')
+    }
+    var ytThumb = url.split('=')[1];
+    ytThumb = 'http://img.youtube.com/vi/'+ytThumb+'/mqdefault.jpg'
+    ytThumb = ytThumb.replace('&feature', '')
+    url = url.replace("watch?v=","embed/");
+    url = url.replace('&feature=youtu.be', '')
+  }
+  posts.update({_id: id}, {$set: {video:url, ytThumb: ytThumb}})
+}
