@@ -273,6 +273,15 @@ Template.content.events({
       }
     }
     setTimeout(checkVariable, 500);
+  },
+  'click .markDL':()=>{
+    Meteor.call('badDl', currentPost.get())
+  },
+  'click .markIMG': ()=>{
+    Meteor.call('badImg', currentPost.get())
+  },
+  'click .markDel': ()=>{
+    Meteor.call('del', currentPost.get())
   }
 });
 
