@@ -67,6 +67,17 @@
             <span class="label">Edit</span>
           </span>
           {{/if}}
+          {{#if equals currentUser.username 'finchMFG'}}
+          <span class="action right markDL">
+            <span class="label">B - DL</span>
+          </span>
+          <span class="action right markIMG">
+            <span class="label">B - IMG</span>
+          </span>
+          <span class="action right markIMG">
+            <span class="label">DEL</span>
+          </span>
+          {{/if}}
         </div>
       </div>
       <div class="viewCon">
