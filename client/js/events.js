@@ -76,7 +76,39 @@ Template.nav.events({
   'click .goProfile':()=>{
     reset()
     Meteor.pushState.pushState(Meteor.user().username, 'user')
-  }
+  },
+  'click .fa-bars':()=>{
+    snapper.open('left');
+  },
+  'click .fa-search':()=>{
+    if($('.mobSearch').is(":visible")){
+      $('.mobSearch').removeClass('extendSearch')
+      setTimeout(function(){
+        $('.mobSearch').hide()
+      }, 200);
+    }else{
+      $('.mobSearch').show()
+      setTimeout(function(){
+        $('.mobSearch').addClass('extendSearch')
+      }, 10);
+      setTimeout(function(){
+        $(".mobSearch").focus();
+      }, 300);
+
+    }
+  },
+  'keyup .mobSearch': ()=>{
+    if(event.keyCode == 13){
+      var searchVal = $('.mobSearch').val()
+      Meteor.pushState.pushState('home')
+      reset()
+      postSearch.set(searchVal)
+    }
+    //or when the search is empty
+    else if($('.mobSearch').val().length == 0){
+      postSearch.set($('.mobSearch').val())
+    }
+  },
 });
 
 Template.register.events({
@@ -392,6 +424,20 @@ Template.main.events({
   'click .sortTopVw':()=>{
     clearSort('topVw', '.sortTopVw')
   }
+});
+
+Template.app.events({
+  'click .gameSelect':(e)=>{
+    currentGame.set($(e.currentTarget).html())
+    $('.gameSelect').each(function() {
+      $( this ).removeClass('active')
+    });
+    $(e.currentTarget).addClass('active')
+  },
+  'click .user': ()=>{
+    reset()
+    Meteor.pushState.pushState()
+  },
 });
 
 function clearSort(target, ele){

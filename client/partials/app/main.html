@@ -65,7 +65,7 @@
 
       <div class="catagory">
         <div class="con">
-          <select id="themeSelect">
+          <select class="themeSelect">
             <option value="classic">Classic Forge</option>
             <option value="modern">Modern Cards</option>
           </select>
@@ -87,7 +87,7 @@
         Trending
       </span>
       <span class="option sortTopDl">
-        Top Downloaded
+        Top Download
       </span>
       <span class="option sortTopVw">
         Most Viewed
@@ -99,7 +99,7 @@
         {{#each posts}}
         {{#if equals theme 'classic'}}
         <a class="con postCard" id="{{_id}}" href="map/{{_id}}" target="_blank">
-          <div class="sixteen-nine" id="{{_id}}">
+          <div class="sixteen-nine classicImage" id="{{_id}}">
             <div class="dacontent">
               <img class="hero" src="{{thumbnail}}" />
             </div>

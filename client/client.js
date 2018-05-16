@@ -82,11 +82,27 @@ window.onload = function () {
       history.pushState('newjibberish', null, null);
       // Handle the back (or forward) buttons here
       // Will NOT handle refresh, use onbeforeunload for this.
-      currentPost.set('')
-      appTracker.set('')
-      profileTracker.set('')
-      currentUser.set('')
-      Meteor.pushState.pushState('home')
+
+      var takeMeHome = true
+
+      if($('.mobSearch').is(":visible")){
+        $('.mobSearch').removeClass('extendSearch')
+        setTimeout(function(){
+          $('.mobSearch').hide()
+        }, 200);
+        takeMeHome = false
+      }else if(snapper.state().state == 'left'){
+        snapper.close()
+        takeMeHome = false
+      }
+
+      if(takeMeHome){
+        currentPost.set('')
+        appTracker.set('')
+        profileTracker.set('')
+        currentUser.set('')
+        Meteor.pushState.pushState('home')
+      }
     };
   }
   else {
@@ -104,6 +120,20 @@ window.onload = function () {
         ignoreHashChange = false;
       }
     };
+  }
+}
+
+Template.app.rendered = function() {
+  var docWidth = $(document).width()
+  if(docWidth < 750){
+    snapper = new Snap({
+      element: document.getElementById('content-2'),
+      maxPosition: 300,
+      resistance: 0.5,
+      disable: 'right'
+    });
+    $('.drawers').show()
+    currentTheme.set('modern')
   }
 }
 
@@ -130,6 +160,7 @@ Template.main.onRendered(function(){
   }
 });
 
-$(document).on('change','#themeSelect',function(){
+$(document).on('change','.themeSelect',function(){
+  console.log($(this))
   currentTheme.set($(this).val())
 });

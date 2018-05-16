@@ -26,6 +26,12 @@ Template.main.helpers({
   }
 });
 
+Template.app.helpers({
+  'catagory': ()=>{
+    return catagory.find({})
+  },
+});
+
 Template.content.helpers({
   post: function(){
     return posts.findOne({_id: currentPost.get()})

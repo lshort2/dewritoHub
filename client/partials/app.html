@@ -1,4 +1,5 @@
 <template name="app">
+
   <!-- put all modals here -->
   <div class="modal registerModal">
     {{>register}}
@@ -12,34 +13,70 @@
     {{>delete}}
   </div>
 
-  <!-- since nav is sticky, we'll put it above the mount  && all sticky objects here-->
-  {{>nav}}
-  <div class="app">
-    <!-- all scrolling here -->
-    <div class="mount">
-      {{#if post}}
-      {{>content}}
-      {{/if}}
-      {{#if home}}
-      {{>main}}
-      {{/if}}
-      {{#if create}}
-      {{#if currentUser}}
-      {{>create}}
-      {{/if}}
-      {{/if}}
+  <div class="MCon" id="content-2">
+    <!-- since nav is sticky, we'll put it above the mount  && all sticky objects here-->
+    {{>nav}}
+    <div class="app">
+      <!-- all scrolling here -->
+      <div class="mount">
+        {{#if post}}
+        {{>content}}
+        {{/if}}
+        {{#if home}}
+        {{>main}}
+        {{/if}}
+        {{#if create}}
+        {{#if currentUser}}
+        {{>create}}
+        {{/if}}
+        {{/if}}
 
-      {{#if settings}}
-      {{>settings}}
-      {{/if}}
+        {{#if settings}}
+        {{>settings}}
+        {{/if}}
 
-      {{#if privacy}}
-      {{>privacy}}
-      {{/if}}
+        {{#if privacy}}
+        {{>privacy}}
+        {{/if}}
 
-      {{#if terms}}
-      {{>terms}}
-      {{/if}}
+        {{#if terms}}
+        {{>terms}}
+        {{/if}}
+      </div>
+    </div>
+  </div>
+
+  <div class="drawers">
+    <div class="snap-drawer snap-drawer-left">
+
+      <div class="drawerCon">
+        <div class="profileCon">
+          <div class="banner">
+            <img src="/backgrounds/bg.jpg" class="blur" alt="" />
+            <div class="user">
+              <img src="https://eldewrito.com/img/logo-white.png" alt="">
+              <span class="username">
+                DewritoHub
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="links">
+          {{#each catagory}}
+          <div class="type">
+            <h5 class="gameSelect">{{name}}</h5><h5 class="right">{{count}}</h5>
+          </div>
+          {{/each}}
+          <select class="themeSelect">
+            <option value="modern">Modern Cards</option>
+            <option value="classic">Classic Forge</option>
+          </select>
+        </div>
+        <div class="bottom">
+          <span>&nbsp;Privacy Policy&nbsp;© 2018 <a href="https://github.com/finchMFG/dewritoHub" target="_blank">DewritoHub</a></span>
+        </div>
+      </div>
+
     </div>
   </div>
 </template>

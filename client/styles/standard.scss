@@ -32,6 +32,19 @@ body{
   border: none;
 }
 
+select{
+  @include border-radius(2px);
+  width: calc(100%);
+  border: none;
+  box-shadow: 2px 2px 8px -1px rgba(17, 17, 17, 0.129412);
+  padding: 7px 7px 7px 7px;
+  height: 24px;
+  position: relative;
+  background: white;
+  float: left;
+  margin-top: 5px;
+  height: auto;
+}
 
 button:disabled{
   background: gray;
@@ -84,7 +97,7 @@ button:disabled{
       height: auto!important;
       padding-bottom: 30px;
     }
-    .sixteen-nine{
+    .classicImage{
       display: none!important;
     }
     .bottom{
@@ -143,5 +156,23 @@ button:disabled{
   }
   .topBar{
     background: white;
+  }
+
+  .MCon{
+    z-index: 2;
+    position: absolute;
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('/backgrounds/bg.jpg');
+    background-size: cover;
+    background-attachment: fixed;
+    width: 100%;
+  }
+
+  body{
+    overflow-x: hidden;
+  }
+
+  .postModern{
+    display: block;
+    width: calc(100% - 20px)!important;
   }
 }
