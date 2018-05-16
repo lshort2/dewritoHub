@@ -13,7 +13,14 @@ computeScore = function(id){
   down = down.length
 
   var redditHotScore = decay.redditHot(45000);
-  var daScore = redditHotScore(up + downloads, down, date);
+
+  if(date instanceof Date == false){
+    dateVal = date.split(' ')
+
+    var daScore = redditHotScore(up + downloads, down, new Date(dateVal[0] +' '+ dateVal[1] +', '+ dateVal[2]) );
+  }else{
+    var daScore = redditHotScore(up + downloads, down, date);
+  }
   console.log('post: ' + id + ' score: '+daScore)
 
   posts.update({_id: id}, {$set: {score: daScore}})
