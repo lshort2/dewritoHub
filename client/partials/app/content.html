@@ -175,6 +175,17 @@
           <div class="type">
             <span class="info">Views</span><span class="right">{{views}}</span>
           </div>
+          <div class="type">
+            <span class="info">Rating</span><span class="right">
+              {{#each starRating}}
+                {{#if equals this 'X'}}
+                <span class="fa fa-star starRate"></span>
+                {{else}}
+                <span class="fa fa-star-half-o starRate" ></span>
+                {{/if}}
+              {{/each}}
+            </span>
+          </div>
         </div>
       </div>
     </aside>

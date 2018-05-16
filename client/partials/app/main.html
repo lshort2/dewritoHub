@@ -82,8 +82,11 @@
         <span class="option sortHot">
           Trending
         </span>
-        <span class="option sortTop">
-          Top
+        <span class="option sortTopDl">
+          Top Downloaded
+        </span>
+        <span class="option sortTopVw">
+          Most Viewed
         </span>
       </div>
       <div class="list">
@@ -121,7 +124,14 @@
                   <span class="number">{{views}}</span>
                 </span>
                 <span class="right">
-                  {{gameMode}}
+                  {{gameMode}} ::
+                  {{#each starRating}}
+                    {{#if equals this 'X'}}
+                    <span class="fa fa-star starRate"></span>
+                    {{else}}
+                    <span class="fa fa-star-half-o starRate" ></span>
+                    {{/if}}
+                  {{/each}}
                 </span>
               </div>
             </div>

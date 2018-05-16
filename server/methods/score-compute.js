@@ -5,18 +5,50 @@ Fiber = Npm.require('fibers');
 computeScore = function(id){
   //get the details
   var date = posts.findOne({_id:id}).date
-  var up = posts.findOne({_id:id}).upUsers
-  var down = posts.findOne({_id:id}).downUsers
+  let up = posts.findOne({_id:id}).upUsers
+  let down = posts.findOne({_id:id}).downUsers
+  var downloads = posts.findOne({_id: id}).downloads
+
   up = up.length
   down = down.length
 
   var redditHotScore = decay.redditHot(45000);
-  var daScore = redditHotScore(up, down, date);
+  var daScore = redditHotScore(up + downloads, down, date);
   console.log('post: ' + id + ' score: '+daScore)
 
   posts.update({_id: id}, {$set: {score: daScore}})
+
+  try{
+    var totalVotes = up + down
+    var upVotes = up
+    console.log(up, totalVotes)
+
+    var percent = upVotes/totalVotes*100
+    percent_to_stars(percent)
+    function percent_to_stars(p){
+      if(p < 94){
+        var star="X"
+        var half="/"
+        var stars = (Math.round((p / 10.0)) / 2)
+        var halves = (p / 10.0) % 2
+        var empties = 5 - stars - halves
+
+        var rating = star.repeat( stars ) + half.repeat( halves )
+        rating = rating.split('')
+        posts.update({_id: id}, {$set: {starRating: rating}})
+
+        // source: https://gist.github.com/grough/1268290/0f7948640026ef7e8177f55ed0583d0cac1146c1
+      }else{
+        posts.update({_id: id}, {$set: {starRating: ['X','X','X','X','X']}})
+      }
+    }
+  }catch(e){console.log(e)}
 }
 function doSomething() {}
+
+posts.find({}).map(function(post) {
+  computeScore(post._id)
+});
 
 (function loop() {
   // update score every 15-30 minutes
