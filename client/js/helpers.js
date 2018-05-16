@@ -5,8 +5,10 @@ Template.main.helpers({
   posts: function(){
     if(sortBy.get() == 'hot'){
       return posts.find({}, {sort: {score: -1}, reactive: reactPost.get()})
-    }if(sortBy.get() == 'top'){
-      return posts.find({}, {sort: {newSate: -1}, reactive: reactPost.get()})
+    }if(sortBy.get() == 'topDl'){
+      return posts.find({}, {sort: {downloads: -1}, reactive: reactPost.get()})
+    }if(sortBy.get() == 'topVw'){
+      return posts.find({}, {sort: {views: -1}, reactive: reactPost.get()})
     }if(sortBy.get() == 'new'){
       return posts.find({}, {sort: {date: -1}, reactive: reactPost.get()})
     }

@@ -381,24 +381,25 @@ Template.main.events({
     appTracker.set('terms')
   },
   'click .sortHot':()=>{
-    sortBy.set('hot')
-    reactPost.set(true)
-    $('.sortHot').addClass('active')
-    $('.sortNew, .sortTop').removeClass('active')
+    clearSort('hot', '.sortHot')
   },
   'click .sortNew':()=>{
-    sortBy.set('new')
-    reactPost.set(true)
-    $('.sortNew').addClass('active')
-    $('.sortHot, .sortTop').removeClass('active')
+    clearSort('new', '.sortNew')
   },
-  'click .sortTop':()=>{
-    sortBy.set('top')
-    reactPost.set(true)
-    $('.sortTop').addClass('active')
-    $('.sortNew, .sortHot').removeClass('active')
+  'click .sortTopDl':()=>{
+    clearSort('topDl', '.sortTopDl')
+  },
+  'click .sortTopVw':()=>{
+    clearSort('topVw', '.sortTopVw')
   }
 });
+
+function clearSort(target, ele){
+  sortBy.set(target)
+  reactPost.set(true)
+  $('.sortHot, .sortTopDl, .sortTopVw, .sortNew').removeClass('active')
+  $(ele).addClass('active')
+}
 
 Template.create.events({
   "click .mapPost": function(event, template){

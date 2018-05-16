@@ -144,8 +144,11 @@ Meteor.publish("posts", function(limit, currentUser, page, sortBy, post, game, s
           if(sortBy == 'hot'){
             return posts.find({gameMode: game}, {sort: {score: -1}, skip: skip, limit: dl});
           }
-          if(sortBy == 'top'){
-            return posts.find({gameMode: game}, {sort: {newScore: -1}, skip: skip, limit: dl});
+          if(sortBy == 'topDl'){
+            return posts.find({gameMode: game}, {sort: {downloads: -1}, skip: skip, limit: dl});
+          }
+          if(sortBy == 'topVw'){
+            return posts.find({gameMode: game}, {sort: {views: -1}, skip: skip, limit: dl});
           }
         }else{
           if(sortBy == 'new'){
@@ -154,8 +157,11 @@ Meteor.publish("posts", function(limit, currentUser, page, sortBy, post, game, s
           if(sortBy == 'hot'){
             return posts.find({}, {sort: {score: -1}, skip: skip, limit: dl});
           }
-          if(sortBy == 'top'){
-            return posts.find({}, {sort: {newScore: -1}, skip: skip, limit: dl});
+          if(sortBy == 'topDl'){
+            return posts.find({}, {sort: {downloads: -1}, skip: skip, limit: dl});
+          }
+          if(sortBy == 'topVw'){
+            return posts.find({}, {sort: {views: -1}, skip: skip, limit: dl});
           }
         }
       }
