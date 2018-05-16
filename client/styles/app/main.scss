@@ -1,4 +1,6 @@
 @import "../../default";
+$option-hover-color: white;
+$option-hover-underline-color: $option-hover-color;
 
 .main{
   margin: 0 auto;
@@ -24,15 +26,46 @@
       color: gray;
       font-weight: 600;
       font-size: 14.4px;
-      span{
+      .option{
+        margin-right: 12px;
+        padding-bottom: .5rem;
+        position: relative;
         transition: .2s;
-        margin-right: 10px;
-      }
-      span:hover{
-        color: white;
+
+        &:hover,
+        &:focus {
+          color: $option-hover-color;
+        }
+
+        &:hover:before,
+        &:focus:before {
+          -webkit-transform: scaleX(1);
+          transform: scaleX(1);
+          visibility: visible;
+        }
+
+        &:before {
+          background-color: $option-hover-underline-color;
+          bottom: 2px;
+          content: '';
+          height: 2px;
+          position: absolute;
+          -webkit-transform: scaleX(0);
+          transform: scaleX(0);
+          -webkit-transition: all 0.2s ease-in-out 0s;
+          transition: all 0.2s ease-in-out 0s;
+          visibility: hidden;
+          width: 96%;
+        }
       }
       .active{
         color: white;
+
+        &.option:before {
+          -webkit-transform: scaleX(1);
+          transform: scaleX(1);
+          visibility: visible;
+        }
       }
     }
     .list{
