@@ -129,3 +129,7 @@ Template.main.onRendered(function(){
     console.log('cant observe feed')
   }
 });
+
+$(document).on('change','#themeSelect',function(){
+  currentTheme.set($(this).val())
+});

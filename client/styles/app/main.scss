@@ -82,6 +82,10 @@ $option-hover-underline-color: $option-hover-color;
       .sort{
         padding: 10px;
       }
+      .feed{
+        display: inline-block;
+        width: 100%;
+      }
       .con{
         background: $foreColor;
         display: inline-block;
@@ -136,6 +140,14 @@ $option-hover-underline-color: $option-hover-color;
         .fa, .number{
           color: #b1b1b1;
           font-size: 12.5px;
+        }
+      }
+
+      .postModern{
+        width: calc(50% - 20px);
+        margin-bottom: 10px;
+        .starRate{
+          color: lightgray!important;
         }
       }
     }
@@ -287,15 +299,24 @@ $option-hover-underline-color: $option-hover-color;
       .username:hover{
         color: white;
       }
-      .gamemode, .author{
+      .gamemode, .author, .quickInfo{
         font-size: 14px;
         @include non-text-select();
       }
-      .gamemode{
+      .gamemode, .quickInfo{
         position: relative;
         float: right;
         color: lightgray;
         cursor: default;
+      }
+      .fa{
+        font-size: 15px!important;
+      }
+
+      .quickInfo{
+        position: absolute;
+        top: 10px;
+        right: 20px;
       }
     }
   }

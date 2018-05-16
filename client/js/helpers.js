@@ -131,6 +131,9 @@ Template.registerHelper("curPage", function(argument){
   else{return pageNum.get()}
 });
 
+Template.registerHelper("theme", function(argument){
+  return currentTheme.get()
+});
 
 // markdown
 Template.registerHelper('markdown', function (text, options) {

@@ -127,7 +127,7 @@ Meteor.methods({
 
     for(var i = 0; i < theFeatured.length; i++){
       var thePost = posts.findOne({_id: theFeatured[i]})
-      postInfo[i] = {username: thePost.username, title:thePost.title, excerpt:thePost.excerpt, comments:thePost.comments, _id:thePost._id, date:thePost.date, newDate: thePost.newDate, gameMode: thePost.gameMode, thumbnail: thePost.thumbnail, views:thePost.views, downloads: thePost.downloads};
+      postInfo[i] = {username: thePost.username, title:thePost.title, excerpt:thePost.excerpt, comments:thePost.comments, _id:thePost._id, date:thePost.date, newDate: thePost.newDate, gameMode: thePost.gameMode, thumbnail: thePost.thumbnail, views:thePost.views, downloads: thePost.downloads, starRating: thePost.starRating};
     }
     // just the 3 for now. We'll add a dedicated featured sort later.
     if(theFeatured.length >= 3){
