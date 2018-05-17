@@ -17,25 +17,16 @@
               {{title}}
             </div>
             <span class="author">
-              By <a href="/users/{{username}}"  class="username">{{username}}</a>
+              By
+              <a href="/users/{{username}}" class="username">{{username}}</a>
             </span>
-
+      
             <span class="gamemode">
               {{gameMode}}&nbsp;
-
-              <!-- I think this is ugly, thoughts?
-              {{#each starRating}}
-              {{#if equals this 'X'}}
-              <span class="fa fa-star starRate"></span>
-              {{else}}
-              <span class="fa fa-star-half-o starRate" ></span>
-              {{/if}}
-              {{/each}}
-            -->
-          </span>
+            </span>
+          </div>
         </div>
-      </div>
-    </a>
+      </a>
     {{/if}}
     {{/each}}
     {{/unless}}
