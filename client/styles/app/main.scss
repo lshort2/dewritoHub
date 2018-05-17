@@ -297,6 +297,30 @@ $desktop-site-breakpoint: 750px;
     display: inline-block;
     width: 100%;
   }
+  @media (min-width: $desktop-site-breakpoint) {
+
+    .featured {
+      position: relative;
+
+      .featured-map:after {
+        bottom: 0;
+        content: '';
+        left: 0;
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+
+      .featured-map:hover {
+        -webkit-transform: translateY(-1px);
+        transform: translateY(-1px);
+      }
+      .featured-map:hover:after {
+        background: linear-gradient(to top, rgba(0,0,0,0.15) 10%, rgba(0,0,0,0.5) 50%, rgba(0,0,0,0.6) 90%);
+        z-index: 2;
+      }
+    }
+  }
   .sixteen-nine{
     width: calc( 33% - 20px);
     margin-left: 10px;
